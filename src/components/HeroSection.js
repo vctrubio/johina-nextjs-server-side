@@ -1,7 +1,7 @@
 export default function HeroSection() {
   return (
-    <section className="relative flex items-center justify-center px-4 border-b border-gray-300 z-10">
-      <div className="text-center max-w-5xl mx-auto">
+    <section className="relative h-screen flex items-center justify-center px-4 border-b border-gray-300 z-10">
+      <div className="text-center max-w-5xl mx-auto bg-white/90 backdrop-blur-sm p-12 rounded-2xl shadow-lg">
         <h1 className="font-handwritten text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold bg-gradient-nature bg-clip-text text-transparent mb-6 transform transition-all duration-1000 hover:scale-105">
           Johina G. Concheso
         </h1>

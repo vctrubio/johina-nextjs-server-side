@@ -33,12 +33,15 @@ export default function FloatingBackground({ floatersData }) {
       return;
     }
 
+    // Shuffle the image URLs for variety on each visit
+    const shuffledUrls = [...imageUrls].sort(() => Math.random() - 0.5);
+
     // Create floating images with random properties - using ALL available images
-    const images = imageUrls.map((url, i) => ({
+    const images = shuffledUrls.map((url, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      size: Math.random() * 120 + 80,
+      size: Math.random() * 180 + 120,
       rotation: Math.random() * 360,
       delay: Math.random() * 4,
       imageUrl: url,
