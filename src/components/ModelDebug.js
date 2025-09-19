@@ -1,4 +1,4 @@
-export default function ModelDebug({ floatersData, bannersData, muralsData, categoriesData }) {
+export default function ModelDebug({ floatersData, bannersData, muralsData, categoriesData, aboutData }) {
   const formatDate = (dateString) => {
     if (!dateString) return 'N/A';
     return new Date(dateString).toLocaleDateString('en-US', {
@@ -106,6 +106,12 @@ export default function ModelDebug({ floatersData, bannersData, muralsData, cate
                     <li><strong>categoryName</strong> (Symbol) - Required, Unique (1-24 chars)</li>
                   </ul>
                 )}
+                {contentTypeId === 'aboutPage' && (
+                  <ul style={{ margin: '0.5rem 0', paddingLeft: '1.5rem' }}>
+                    <li><strong>titleForReference</strong> (Symbol)</li>
+                    <li><strong>photos</strong> (Array of Assets) - Required (min: 1)</li>
+                  </ul>
+                )}
               </div>
             </div>
           </>
@@ -133,6 +139,7 @@ export default function ModelDebug({ floatersData, bannersData, muralsData, cate
       {renderContentTypeSection(bannersData, 'Home Banners', 'homeBanners', 'images')}
       {renderContentTypeSection(muralsData, 'Murals', 'murals', 'photos')}
       {renderContentTypeSection(categoriesData, 'Categories', 'categories', null)}
+      {renderContentTypeSection(aboutData, 'About Page', 'aboutPage', 'photos')}
     </div>
   );
 }
