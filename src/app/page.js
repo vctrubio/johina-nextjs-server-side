@@ -2,7 +2,6 @@ import HeroSection from "../components/HeroSection";
 import FloatingBackground from "../components/FloatingBackground";
 import GalleryGrid from "../components/GalleryGrid";
 import Footer from "../components/Footer";
-import Link from "next/link";
 import { getBackgroundFloaters } from "../services/backgroundFloaters";
 import { getHomeBanners } from "../services/homeBanners";
 
@@ -21,7 +20,6 @@ export default async function Home() {
         </div>
         <GalleryGrid bannersData={bannersData} />
       </main>
-
       <Footer />
     </>
   );

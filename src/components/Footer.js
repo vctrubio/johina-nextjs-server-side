@@ -1,3 +1,4 @@
+"use client";
 import { Phone, Mail, Instagram } from "lucide-react";
 import Link from "next/link";
 import { COLORS } from "../lib/colors";
@@ -14,7 +15,7 @@ export default function Footer() {
             Johina G. Concheso
           </h3>
           <p className="text-gray-600 text-sm mt-1">Muralist based in Madrid</p>
-          <Link 
+          <Link
             href="/murals"
             className="inline-block mt-2 text-sm font-medium transition-all duration-300 hover:scale-105"
             style={{ color: COLORS.tertiary }}
@@ -30,13 +31,15 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="group flex items-center gap-3 text-gray-600 hover:text-primary transition-all duration-300 hover:scale-105"
           >
-            <div 
+            <div
               className="p-2 rounded-full transition-all duration-300 group-hover:bounce-once"
               style={{
-                backgroundColor: '#f5f5f5',
+                backgroundColor: "#f5f5f5",
               }}
-              onMouseEnter={(e) => e.target.style.backgroundColor = COLORS.fifth + '40'}
-              onMouseLeave={(e) => e.target.style.backgroundColor = '#f5f5f5'}
+              onMouseEnter={(e) =>
+                (e.target.style.backgroundColor = COLORS.fifth + "40")
+              }
+              onMouseLeave={(e) => (e.target.style.backgroundColor = "#f5f5f5")}
             >
               <Phone size={22} />
             </div>
@@ -48,13 +51,15 @@ export default function Footer() {
             href="mailto:johina22@gmail.com"
             className="group flex items-center gap-3 text-gray-600 hover:text-primary transition-all duration-300 hover:scale-105"
           >
-            <div 
+            <div
               className="p-2 rounded-full transition-all duration-300 group-hover:bounce-once"
               style={{
-                backgroundColor: '#f5f5f5',
+                backgroundColor: "#f5f5f5",
               }}
-              onMouseEnter={(e) => e.target.style.backgroundColor = COLORS.fifth + '40'}
-              onMouseLeave={(e) => e.target.style.backgroundColor = '#f5f5f5'}
+              onMouseEnter={(e) =>
+                (e.target.style.backgroundColor = COLORS.fifth + "40")
+              }
+              onMouseLeave={(e) => (e.target.style.backgroundColor = "#f5f5f5")}
             >
               <Mail size={22} />
             </div>
@@ -68,13 +73,15 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="group flex items-center gap-3 text-gray-600 hover:text-primary transition-all duration-300 hover:scale-105"
           >
-            <div 
+            <div
               className="p-2 rounded-full transition-all duration-300 group-hover:bounce-once"
               style={{
-                backgroundColor: '#f5f5f5',
+                backgroundColor: "#f5f5f5",
               }}
-              onMouseEnter={(e) => e.target.style.backgroundColor = COLORS.fifth + '40'}
-              onMouseLeave={(e) => e.target.style.backgroundColor = '#f5f5f5'}
+              onMouseEnter={(e) =>
+                (e.target.style.backgroundColor = COLORS.fifth + "40")
+              }
+              onMouseLeave={(e) => (e.target.style.backgroundColor = "#f5f5f5")}
             >
               <Instagram size={22} />
             </div>
