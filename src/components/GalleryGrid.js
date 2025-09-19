@@ -69,12 +69,24 @@ const GalleryItem = ({ imageUrl, index }) => {
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
             
             {/* Subtle glow effect */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-purple-200/20 via-blue-200/20 to-green-200/20 rounded-3xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+            <div className={`absolute -inset-1 rounded-3xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 ${
+              index % 5 === 0 ? 'bg-primary/20' :
+              index % 5 === 1 ? 'bg-secondary/20' :
+              index % 5 === 2 ? 'bg-tertiary/20' :
+              index % 5 === 3 ? 'bg-fourth/20' :
+              'bg-fifth/20'
+            }`}></div>
           </div>
           
           {/* Floating accent */}
           <div 
-            className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-br from-pink-300 to-purple-400 rounded-full opacity-60 group-hover:scale-125 transition-transform duration-300"
+            className={`absolute -top-2 -right-2 w-6 h-6 rounded-full opacity-70 group-hover:scale-125 transition-transform duration-300 ${
+              index % 5 === 0 ? 'bg-primary' :
+              index % 5 === 1 ? 'bg-secondary' :
+              index % 5 === 2 ? 'bg-tertiary' :
+              index % 5 === 3 ? 'bg-fourth' :
+              'bg-fifth'
+            }`}
             style={{ 
               animationDelay: `${index * 300}ms`,
               animation: isVisible ? 'float 4s ease-in-out infinite' : 'none'
