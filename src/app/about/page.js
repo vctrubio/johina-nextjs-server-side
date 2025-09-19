@@ -1,6 +1,60 @@
 import { getAboutPage } from "../../services/aboutPage";
 import AboutClient from "../../components/AboutClient";
 
+export const metadata = {
+  title: "About | Johina",
+  description: "Meet Johina G. Concheso, renowned international muralist with over two decades of experience. From UNESCO heritage sites to Royal Palaces and prestigious embassies, her vibrant murals bring spaces to life with color, creativity, and storytelling. Based in Madrid, Spain.",
+  keywords: "Johina G. Concheso, about artist, international muralist, UNESCO heritage restoration, Royal Palaces murals, Saudi Arabian Embassy, Swedish Embassy, Madrid Towers, Tanger Continental, Hotel Misiana Tarifa, Architectural Digest, Elle Decor, artist biography, mural artist Madrid, contemporary muralist, classical art techniques",
+  author: "Johina G. Concheso",
+  creator: "Johina G. Concheso",
+  
+  // Open Graph
+  openGraph: {
+    title: "About | Johina",
+    description: "Meet Johina G. Concheso, renowned international muralist with over two decades of experience creating stunning murals for UNESCO heritage sites, Royal Palaces, and prestigious venues worldwide.",
+    type: "profile",
+    url: "https://johina.com/about",
+    siteName: "Johina G. Concheso - International Muralist",
+    images: [
+      {
+        url: "/johina-profile.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Johina G. Concheso - International Muralist and Artist Portrait",
+      },
+    ],
+    profile: {
+      firstName: "Johina",
+      lastName: "G. Concheso",
+      gender: "female",
+    },
+  },
+  
+  // Twitter
+  twitter: {
+    card: "summary_large_image",
+    title: "About | Johina",
+    description: "Meet the renowned international muralist creating stunning murals for UNESCO heritage sites, Royal Palaces, and prestigious venues worldwide.",
+    images: ["/johina-profile.jpg"],
+    creator: "@johinagconcheso",
+  },
+  
+  // Additional SEO
+  category: "Art & Culture",
+  classification: "Artist Biography",
+  
+  // Structured data hints
+  other: {
+    'profile:first_name': 'Johina',
+    'profile:last_name': 'G. Concheso',
+    'profile:username': 'johinagconcheso',
+    'og:image:alt': 'Johina G. Concheso - International Muralist and Artist Portrait',
+    'twitter:image:alt': 'Johina G. Concheso - International Muralist and Artist Portrait',
+    'canonical': 'https://johina.com/about',
+    'twitter:site': '@johinagconcheso',
+  },
+};
+
 export default async function AboutPage() {
   const aboutData = await getAboutPage();
 

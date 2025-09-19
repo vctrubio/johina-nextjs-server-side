@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useRef } from 'react';
-import Image from 'next/image';
-import { Play, Pause, SkipBack, SkipForward } from 'lucide-react';
+import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
+import { Play, Pause, SkipBack, SkipForward } from "lucide-react";
 
 export default function AboutClient({ carouselImages = [] }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -39,7 +39,9 @@ export default function AboutClient({ carouselImages = [] }) {
   };
 
   const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + carouselImages.length) % carouselImages.length);
+    setCurrentImageIndex(
+      (prev) => (prev - 1 + carouselImages.length) % carouselImages.length,
+    );
   };
 
   // Check if we have carousel images
@@ -89,8 +91,8 @@ export default function AboutClient({ carouselImages = [] }) {
                 </span>{" "}
                 whose vibrant works capture the essence of human emotion and
                 natural beauty. With over two decades of artistic experience,
-                she has developed a distinctive style that bridges
-                contemporary techniques with classical sensibilities.
+                she has developed a distinctive style that bridges contemporary
+                techniques with classical sensibilities.
               </p>
 
               <p className="text-lg text-gray-700 leading-relaxed">
@@ -98,23 +100,21 @@ export default function AboutClient({ carouselImages = [] }) {
                 <span className="italic text-secondary">
                   royal palaces and embassies
                 </span>
-                , from grand hotel lobbies to vibrant restaurants, her murals bring 
-                spaces to life with{" "}
+                , from grand hotel lobbies to vibrant restaurants, her murals
+                bring spaces to life with{" "}
                 <span className="text-primary font-medium">
                   color, creativity, and storytelling
                 </span>
-                . Each project is a unique collaboration, transforming walls into 
-                windows to new worlds.
+                . Each project is a unique collaboration, transforming walls
+                into windows to new worlds.
               </p>
 
               <p className="text-lg text-gray-700 leading-relaxed">
-                Her work has been exhibited internationally, earning
-                recognition for its{" "}
-                <span className="text-fourth font-medium">
-                  emotional depth
-                </span>{" "}
-                and technical mastery. Johina&apos;s art invites viewers into
-                a world where color and form dance together, creating visual
+                Her work has been exhibited internationally, earning recognition
+                for its{" "}
+                <span className="text-fourth font-medium">emotional depth</span>{" "}
+                and technical mastery. Johina&apos;s art invites viewers into a
+                world where color and form dance together, creating visual
                 poetry that speaks to the soul.
               </p>
             </div>
@@ -124,11 +124,11 @@ export default function AboutClient({ carouselImages = [] }) {
         {/* Achievements Section */}
         <div className="mt-20 text-center">
           <p className="text-lg text-gray-700 leading-relaxed max-w-5xl mx-auto">
-            My artistic journey has taken me from intimate commissions to prestigious international projects. 
-            I have collaborated with{" "}
-            <a 
-              href="https://www.unesco.org/en" 
-              target="_blank" 
+            My artistic journey has taken me from intimate commissions to
+            prestigious international projects. I have collaborated with{" "}
+            <a
+              href="https://www.unesco.org/en"
+              target="_blank"
               rel="noopener noreferrer"
               className="font-semibold text-primary px-2 py-1 rounded transition-all duration-300 hover:bg-green-100"
             >
@@ -136,32 +136,36 @@ export default function AboutClient({ carouselImages = [] }) {
             </a>{" "}
             on heritage restoration initiatives and created bespoke murals for{" "}
             <span className="font-semibold text-secondary">Royal Palaces</span>,{" "}
-            <span className="font-semibold text-tertiary">prestigious Embassies</span>, and iconic venues including{" "}
+            <span className="font-semibold text-tertiary">
+              prestigious Embassies
+            </span>
+            , and iconic venues including{" "}
             <span className="font-semibold text-fourth">Madrid Towers</span>,{" "}
-            <span className="font-semibold text-fifth">Tanger Continental</span>, and{" "}
-            <a 
-              href="https://hotelmisianatarifa.com/" 
-              target="_blank" 
+            <span className="font-semibold text-fifth">Tanger Continental</span>
+            , and{" "}
+            <a
+              href="https://hotelmisianatarifa.com/"
+              target="_blank"
               rel="noopener noreferrer"
               className="font-semibold text-primary px-2 py-1 rounded transition-all duration-300 hover:bg-green-100"
             >
               Hotel Misiana in Tarifa
             </a>
             . My work has been celebrated in{" "}
-            <a 
-              href="https://www.architecturaldigest.com/" 
-              target="_blank" 
+            <a
+              href="https://www.architecturaldigest.com/"
+              target="_blank"
               rel="noopener noreferrer"
               className="font-semibold text-secondary px-2 py-1 rounded transition-all duration-300 hover:bg-purple-100"
             >
               Architectural Digest
             </a>{" "}
             and{" "}
-            <a 
-              href="https://www.elledecor.com/es/" 
-              target="_blank" 
+            <a
+              href="https://www.elledecor.com/es/"
+              target="_blank"
               rel="noopener noreferrer"
-              className="font-semibold text-tertiary px-2 py-1 rounded transition-all duration-300 hover:bg-orange-100"
+              className="font-semibold text-fifth px-2 py-1 rounded transition-all duration-300 hover:bg-orange-100"
             >
               Elle Decor
             </a>
@@ -183,12 +187,12 @@ export default function AboutClient({ carouselImages = [] }) {
                   {carouselImages.map((imageUrl, index) => {
                     const isActive = index === currentImageIndex;
                     const offset = index - currentImageIndex;
-                    
+
                     return (
                       <div
                         key={index}
                         className={`absolute inset-0 rounded-2xl overflow-hidden shadow-2xl transition-all duration-700 ease-out cursor-pointer ${
-                          isActive ? 'z-20' : 'z-10'
+                          isActive ? "z-20" : "z-10"
                         }`}
                         style={{
                           transform: `
@@ -196,7 +200,8 @@ export default function AboutClient({ carouselImages = [] }) {
                             translateY(${offset * 6}px) 
                             scale(${isActive ? 1 : 0.95})
                           `,
-                          opacity: Math.abs(offset) > 2 ? 0 : isActive ? 1 : 0.7,
+                          opacity:
+                            Math.abs(offset) > 2 ? 0 : isActive ? 1 : 0.7,
                         }}
                         onClick={() => setCurrentImageIndex(index)}
                       >
@@ -206,11 +211,14 @@ export default function AboutClient({ carouselImages = [] }) {
                           fill
                           className="object-contain"
                           onError={(e) => {
-                            console.log('About image failed to load:', imageUrl);
-                            e.target.style.display = 'none';
+                            console.log(
+                              "About image failed to load:",
+                              imageUrl,
+                            );
+                            e.target.style.display = "none";
                           }}
                         />
-                        
+
                         {/* Card border effect */}
                         <div className="absolute inset-0 border-4 border-white/20 rounded-2xl pointer-events-none"></div>
                       </div>
@@ -272,9 +280,9 @@ export default function AboutClient({ carouselImages = [] }) {
       <div className="bg-gray-100 py-12 px-4 mt-16">
         <div className="max-w-4xl mx-auto text-center">
           <blockquote className="text-lg sm:text-xl font-light text-gray-700 italic leading-relaxed">
-            &ldquo;Art is not just what I create&mdash;it&apos;s how I
-            breathe, how I see the world, and how I share my heart with
-            others. Every brushstroke carries a piece of my soul.&rdquo;
+            &ldquo;Art is not just what I create&mdash;it&apos;s how I breathe,
+            how I see the world, and how I share my heart with others. Every
+            brushstroke carries a piece of my soul.&rdquo;
           </blockquote>
         </div>
       </div>

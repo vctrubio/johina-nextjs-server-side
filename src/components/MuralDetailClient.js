@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+import ShareButton from './ShareButton';
 
 export default function MuralDetailClient({ mural, categories, relatedMurals }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -22,14 +23,22 @@ export default function MuralDetailClient({ mural, categories, relatedMurals }) 
   return (
     <main className="min-h-screen bg-white py-20 px-4">
       <div className="max-w-7xl mx-auto">
-        {/* Back Button */}
-        <Link
-          href="/murals"
-          className="inline-flex items-center gap-2 text-gray-600 hover:text-primary transition-colors mb-8"
-        >
-          <ArrowLeft size={20} />
-          Back to murals
-        </Link>
+        {/* Header with Back Button and Share */}
+        <div className="flex justify-between items-center mb-8">
+          <Link
+            href="/murals"
+            className="inline-flex items-center gap-2 text-gray-600 hover:text-primary transition-colors"
+          >
+            <ArrowLeft size={20} />
+            Back to murals
+          </Link>
+          
+          <ShareButton 
+            title={`${mural.fields.title} by Johina G. Concheso`}
+            description={mural.fields.description || `Beautiful ${categoryName || 'custom'} mural by internationally renowned artist Johina G. Concheso. Featured in prestigious venues worldwide.`}
+            url={typeof window !== 'undefined' ? window.location.href : ''}
+          />
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Image Gallery */}
