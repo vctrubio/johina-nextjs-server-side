@@ -7,7 +7,7 @@
   --fourth: #6B68AD;
   --fifth: #97AAD3;
   
-  --background: #f9fdf5;
+  --background: hsl(30, 15%, 97%);
   --foreground: var(--primary);
   --h2-color: var(--secondary);
   --error-color: var(--fourth);
@@ -66,7 +66,7 @@ h4 {
 }
 
 .bg-gradient-nature {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--fourth) 100%);
+  background: linear-gradient(135deg, hsl(95, 35%, 45%) 0%, hsl(145, 25%, 55%) 50%, hsl(200, 25%, 65%) 100%);
 }
 
 .shadow-vibrant {
@@ -126,4 +126,21 @@ h4 {
 
 .bg-fourth {
   background-color: var(--fourth);
+}
+
+/* Floating Animation */
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+  66% {
+    transform: translateY(5px) rotate(-3deg);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
 }

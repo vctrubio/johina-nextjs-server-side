@@ -1,38 +1,42 @@
-import Link from 'next/link';
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+const routes = [
+  { name: "About", href: "/about" },
+  { name: "Debug", href: "/debug" },
+];
 
 export default function Navbar() {
+  const pathname = usePathname();
+
   return (
-    <nav className="bg-white shadow-sm border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          <div className="flex">
-            <div className="flex-shrink-0 flex items-center">
-              <Link href="/" className="hero-title text-2xl font-normal text-primary hover:text-secondary transition-colors">
-                Johina G. Concheso
-              </Link>
-            </div>
-          </div>
-          
-          <div className="flex items-center space-x-8">
-            <Link 
-              href="/" 
-              className="text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors"
+    <nav className="relative z-20 bg-transparent py-8">
+      <div className="max-w-7xl mx-auto px-4 text-center">
+        <Link href="/" className="block mb-8">
+          <h1 className="font-handwritten text-6xl sm:text-8xl md:text-9xl lg:text-[12rem] xl:text-[14rem] font-bold bg-gradient-nature bg-clip-text text-transparent transform transition-all duration-700 hover:scale-105 cursor-pointer leading-none">
+            Johina G. Concheso
+          </h1>
+        </Link>
+
+        <div className="flex justify-center items-center gap-12">
+          {routes.map((route) => (
+            <Link
+              key={route.href}
+              href={route.href}
+              className={`font-handwritten text-4xl transition-all duration-500 relative ${
+                pathname === route.href
+                  ? "text-primary scale-110"
+                  : "text-gray-500 hover:text-primary hover:scale-105"
+              }`}
             >
-              Home
+              {route.name.toLowerCase()}
+              {pathname === route.href && (
+                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-8 h-1 bg-primary rounded-full"></div>
+              )}
             </Link>
-            <Link 
-              href="/about" 
-              className="text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors"
-            >
-              About
-            </Link>
-            <Link 
-              href="/debug" 
-              className="text-gray-700 hover:text-secondary px-3 py-2 rounded-md text-sm font-medium transition-colors bg-gray-100 rounded-full"
-            >
-              Debug
-            </Link>
-          </div>
+          ))}
         </div>
       </div>
     </nav>
