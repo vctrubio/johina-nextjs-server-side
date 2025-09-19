@@ -1,4 +1,4 @@
-export default function ModelDebug({ floatersData, bannerData }) {
+export default function ModelDebug({ floatersData, bannersData, muralsData, categoriesData }) {
   const formatDate = (dateString) => {
     if (!dateString) return 'N/A';
     return new Date(dateString).toLocaleDateString('en-US', {
@@ -18,6 +18,9 @@ export default function ModelDebug({ floatersData, bannerData }) {
         const imageCount = entry.fields[imageFieldName] ? entry.fields[imageFieldName].length : 0;
         return total + imageCount;
       }, 0) : 0;
+
+    // For categories, we don't count images
+    const displayTotalImages = imageFieldName !== null;
 
     return (
       <div style={{ marginBottom: '3rem' }}>
@@ -41,16 +44,18 @@ export default function ModelDebug({ floatersData, bannerData }) {
                 <div style={{ fontSize: '2rem', fontWeight: 'bold' }}>{data.count}</div>
               </div>
               
-              <div style={{ 
-                padding: '1rem', 
-                backgroundColor: 'var(--secondary)', 
-                color: 'white', 
-                borderRadius: '8px', 
-                textAlign: 'center' 
-              }}>
-                <h4 style={{ margin: '0 0 0.5rem 0', color: 'white' }}>Total Images</h4>
-                <div style={{ fontSize: '2rem', fontWeight: 'bold' }}>{totalImages}</div>
-              </div>
+              {displayTotalImages && (
+                <div style={{ 
+                  padding: '1rem', 
+                  backgroundColor: 'var(--secondary)', 
+                  color: 'white', 
+                  borderRadius: '8px', 
+                  textAlign: 'center' 
+                }}>
+                  <h4 style={{ margin: '0 0 0.5rem 0', color: 'white' }}>Total Images</h4>
+                  <div style={{ fontSize: '2rem', fontWeight: 'bold' }}>{totalImages}</div>
+                </div>
+              )}
               
               <div style={{ 
                 padding: '1rem', 
@@ -87,6 +92,20 @@ export default function ModelDebug({ floatersData, bannerData }) {
                     <li><strong>titleForReference</strong> (Symbol) - Required</li>
                   </ul>
                 )}
+                {contentTypeId === 'murals' && (
+                  <ul style={{ margin: '0.5rem 0', paddingLeft: '1.5rem' }}>
+                    <li><strong>title</strong> (Symbol) - Unique</li>
+                    <li><strong>url</strong> (Symbol) - Unique</li>
+                    <li><strong>photos</strong> (Array of Assets) - Required (min: 1)</li>
+                    <li><strong>description</strong> (Symbol)</li>
+                    <li><strong>category</strong> (Link to Entry) - Required</li>
+                  </ul>
+                )}
+                {contentTypeId === 'categories' && (
+                  <ul style={{ margin: '0.5rem 0', paddingLeft: '1.5rem' }}>
+                    <li><strong>categoryName</strong> (Symbol) - Required, Unique (1-24 chars)</li>
+                  </ul>
+                )}
               </div>
             </div>
           </>
@@ -111,7 +130,9 @@ export default function ModelDebug({ floatersData, bannerData }) {
       <h2>Contentful Model Debug</h2>
       
       {renderContentTypeSection(floatersData, 'Background Floaters', 'backgroundFloaters', 'image')}
-      {renderContentTypeSection(bannerData, 'Home Banners', 'homeBanners', 'images')}
+      {renderContentTypeSection(bannersData, 'Home Banners', 'homeBanners', 'images')}
+      {renderContentTypeSection(muralsData, 'Murals', 'murals', 'photos')}
+      {renderContentTypeSection(categoriesData, 'Categories', 'categories', null)}
     </div>
   );
 }

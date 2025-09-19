@@ -14,7 +14,7 @@ const GalleryItem = ({ imageUrl, index }) => {
           setIsVisible(true);
         }
       },
-      { threshold: 0.2, rootMargin: '50px' }
+      { threshold: 0.1, rootMargin: '200px' }
     );
 
     if (itemRef.current) {
@@ -37,18 +37,18 @@ const GalleryItem = ({ imageUrl, index }) => {
   return (
     <div
       ref={itemRef}
-      className={`relative py-16 px-4 transition-all duration-1000 ${layout.bg} ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+      className={`relative py-16 px-4 transition-all duration-600 ${layout.bg} ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}
-      style={{ transitionDelay: `${(index % 3) * 200}ms` }}
+      style={{ transitionDelay: `${(index % 3) * 100}ms` }}
     >
       <div className={`flex ${layout.align} max-w-7xl mx-auto`}>
         <div
           className={`relative group ${layout.offset}`}
           style={{
             transform: isVisible ? `rotate(${rotation}deg)` : 'rotate(0deg)',
-            transition: 'transform 1s ease-out',
-            transitionDelay: `${400 + (index % 3) * 150}ms`
+            transition: 'transform 600ms ease-out',
+            transitionDelay: `${200 + (index % 3) * 50}ms`
           }}
         >
           <div className="relative overflow-hidden rounded-3xl shadow-2xl border-4 border-white/30 backdrop-blur-sm">

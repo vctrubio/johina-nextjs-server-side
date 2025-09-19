@@ -1,11 +1,29 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { ROUTE_COLORS } from "../lib/colors";
 
 export default function Navbar() {
   const pathname = usePathname();
-  const isHome = pathname === '/';
+  const isHome = pathname === "/";
+
+  const getNavLinkStyle = (route) => {
+    // Check if current route starts with the nav route (for nested routes like /murals/abc)
+    const isActive = pathname === route || pathname.startsWith(route + '/');
+    const activeColor = ROUTE_COLORS[route];
+
+    if (isActive && activeColor) {
+      return {
+        color: activeColor,
+        borderBottomWidth: "2px",
+        borderBottomStyle: "solid",
+        borderBottomColor: activeColor,
+      };
+    }
+
+    return {};
+  };
 
   return (
     <nav className="bg-white shadow-sm border-b border-gray-200">
@@ -14,25 +32,30 @@ export default function Navbar() {
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
               {!isHome && (
-                <Link href="/" className="hero-title text-2xl font-normal text-primary hover:text-secondary transition-colors">
+                <Link
+                  href="/"
+                  className="hero-title text-2xl font-normal text-primary hover:bg-primary hover:text-white hover:border-primary hover:scale-105 transition-all duration-300 px-3 py-1 rounded-lg border-2 border-transparent"
+                >
                   Johina G. Concheso
                 </Link>
               )}
             </div>
           </div>
-          
-          <div className="flex items-center space-x-8">
-            <Link 
-              href="/about" 
-              className="text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors"
+
+          <div className="flex items-center space-x-10">
+            <Link
+              href="/murals"
+              className="text-gray-700 hover:opacity-80 px-4 py-3 text-lg font-semibold tracking-wide transition-all duration-200 hover:scale-105"
+              style={getNavLinkStyle("/murals")}
+            >
+              Murals
+            </Link>
+            <Link
+              href="/about"
+              className="text-gray-700 hover:opacity-80 px-4 py-3 text-lg font-semibold tracking-wide transition-all duration-200 hover:scale-105"
+              style={getNavLinkStyle("/about")}
             >
               About
-            </Link>
-            <Link 
-              href="/debug" 
-              className="text-gray-700 hover:text-secondary px-3 py-2 rounded-md text-sm font-medium transition-colors bg-gray-100 rounded-full"
-            >
-              Debug
             </Link>
           </div>
         </div>

@@ -1,11 +1,15 @@
 import { getBackgroundFloaters } from "../../services/backgroundFloaters";
-import { getBannerPhotos } from "../../services/bannerPhotos";
+import { getHomeBanners } from "../../services/homeBanners";
+import { getMurals } from "../../services/murals";
+import { getCategories } from "../../services/categories";
 import ColorPaletteDebug from "../../components/ColorPaletteDebug";
 import ModelDebug from "../../components/ModelDebug";
 
 export default async function DebugPage() {
   const floatersData = await getBackgroundFloaters();
-  const bannerData = await getBannerPhotos();
+  const bannersData = await getHomeBanners();
+  const muralsData = await getMurals();
+  const categoriesData = await getCategories();
 
   return (
     <>
@@ -14,7 +18,12 @@ export default async function DebugPage() {
         <h2>Development Tools</h2>
 
         <ColorPaletteDebug />
-        <ModelDebug floatersData={floatersData} bannerData={bannerData} />
+        <ModelDebug 
+          floatersData={floatersData} 
+          bannersData={bannersData}
+          muralsData={muralsData}
+          categoriesData={categoriesData}
+        />
       </div>
     </>
   );
