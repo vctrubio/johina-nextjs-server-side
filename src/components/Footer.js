@@ -1,31 +1,13 @@
-'use client';
-
-import { useState, useEffect } from 'react';
 import { Phone, Mail, Instagram } from 'lucide-react';
 
 export default function Footer() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-      
-      // Show footer when user is within 100px of the bottom
-      const isAtBottom = scrollTop + windowHeight >= documentHeight - 100;
-      setIsVisible(isAtBottom);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   return (
-    <footer className={`fixed bottom-0 left-0 right-0 z-30 bg-white/95 backdrop-blur-sm border-t border-gray-200 px-6 py-6 transition-transform duration-300 ${
-      isVisible ? 'translate-y-0' : 'translate-y-full'
-    }`}>
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
+    <footer className="relative z-30 bg-white border-t border-gray-200 px-6 py-12 shadow-2xl">
+      {/* Layer effect overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-gray-100/50 to-transparent pointer-events-none"></div>
+      
+      <div className="relative max-w-7xl mx-auto flex justify-between items-center">
         <div className="text-left">
           <h3 className="font-handwritten text-2xl text-primary font-bold">
             Johina G. Concheso

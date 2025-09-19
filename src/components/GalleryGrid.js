@@ -1,6 +1,90 @@
 'use client';
 
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+
+const GalleryItem = ({ imageUrl, index }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const itemRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.2, rootMargin: '50px' }
+    );
+
+    if (itemRef.current) {
+      observer.observe(itemRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Create layout variations
+  const layouts = [
+    { align: 'justify-start', size: { w: 500, h: 375 }, offset: 'ml-8', bg: 'bg-gradient-to-r from-blue-50/30 to-transparent' },
+    { align: 'justify-center', size: { w: 700, h: 525 }, offset: '', bg: 'bg-gradient-to-l from-purple-50/20 via-pink-50/20 to-blue-50/20' },
+    { align: 'justify-end', size: { w: 550, h: 400 }, offset: 'mr-8', bg: 'bg-gradient-to-l from-green-50/30 to-transparent' },
+  ];
+
+  const layout = layouts[index % 3];
+  const rotation = [-2, 0, 2][index % 3];
+
+  return (
+    <div
+      ref={itemRef}
+      className={`relative py-16 px-4 transition-all duration-1000 ${layout.bg} ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+      }`}
+      style={{ transitionDelay: `${(index % 3) * 200}ms` }}
+    >
+      <div className={`flex ${layout.align} max-w-7xl mx-auto`}>
+        <div
+          className={`relative group ${layout.offset}`}
+          style={{
+            transform: isVisible ? `rotate(${rotation}deg)` : 'rotate(0deg)',
+            transition: 'transform 1s ease-out',
+            transitionDelay: `${400 + (index % 3) * 150}ms`
+          }}
+        >
+          <div className="relative overflow-hidden rounded-3xl shadow-2xl border-4 border-white/30 backdrop-blur-sm">
+            <Image
+              src={imageUrl}
+              alt={`Gallery image ${index + 1}`}
+              width={layout.size.w}
+              height={layout.size.h}
+              className="h-auto object-cover transition-all duration-700 group-hover:scale-110 relative z-20"
+              onError={(e) => {
+                console.log('Gallery image failed to load:', imageUrl);
+                e.target.style.display = 'none';
+              }}
+              onLoad={() => console.log('Gallery image loaded successfully:', imageUrl)}
+            />
+            
+            {/* Hover overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+            
+            {/* Subtle glow effect */}
+            <div className="absolute -inset-1 bg-gradient-to-r from-purple-200/20 via-blue-200/20 to-green-200/20 rounded-3xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+          </div>
+          
+          {/* Floating accent */}
+          <div 
+            className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-br from-pink-300 to-purple-400 rounded-full opacity-60 group-hover:scale-125 transition-transform duration-300"
+            style={{ 
+              animationDelay: `${index * 300}ms`,
+              animation: isVisible ? 'float 4s ease-in-out infinite' : 'none'
+            }}
+          ></div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default function GalleryGrid({ bannersData }) {
   if (!bannersData?.entries?.length) {
@@ -29,30 +113,24 @@ export default function GalleryGrid({ bannersData }) {
     return null;
   }
 
-  // Show first 8 images for the grid
-  const displayImages = galleryImages.slice(0, 8);
+  // Show all images with enhanced layout
+  const displayImages = galleryImages;
 
   return (
-    <section>
-      <div className="w-full">
-        <div className="grid grid-cols-1 gap-32 py-20">
-          {displayImages.map((imageUrl, index) => (
-            <Image
-              key={index}
-              src={imageUrl}
-              alt={`Gallery image ${index + 1}`}
-              width={600}
-              height={450}
-              className="mx-auto h-auto object-cover transition-transform duration-300 hover:scale-105 rounded-2xl shadow-2xl border-4 border-white/20 relative z-20"
-              onError={(e) => {
-                console.log('Gallery image failed to load:', imageUrl);
-                e.target.style.display = 'none';
-              }}
-              onLoad={() => console.log('Gallery image loaded successfully:', imageUrl)}
-            />
-          ))}
-        </div>
+    <section className="relative overflow-hidden">
+      {/* Background pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-100 to-transparent"></div>
       </div>
+      
+      <div className="relative">
+        {displayImages.map((imageUrl, index) => (
+          <GalleryItem key={index} imageUrl={imageUrl} index={index} />
+        ))}
+      </div>
+      
+      {/* Bottom fade effect */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
     </section>
   );
 }

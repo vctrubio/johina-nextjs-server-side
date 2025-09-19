@@ -77,31 +77,6 @@ export default function AboutPage() {
                   poetry that speaks to the soul.
                 </p>
               </div>
-
-              {/* Highlights */}
-              <div className="pt-6 border-t border-gray-200">
-                <h3 className="text-xl font-medium text-secondary mb-4">
-                  Artistic Journey
-                </h3>
-                <ul className="space-y-2 text-gray-600">
-                  <li className="flex items-center">
-                    <div className="w-2 h-2 bg-primary rounded-full mr-3"></div>
-                    International exhibitions and recognition
-                  </li>
-                  <li className="flex items-center">
-                    <div className="w-2 h-2 bg-secondary rounded-full mr-3"></div>
-                    Over 20 years of artistic dedication
-                  </li>
-                  <li className="flex items-center">
-                    <div className="w-2 h-2 bg-fourth rounded-full mr-3"></div>
-                    Distinctive contemporary style
-                  </li>
-                  <li className="flex items-center">
-                    <div className="w-2 h-2 bg-fifth rounded-full mr-3"></div>
-                    Themes of family, nature, and transformation
-                  </li>
-                </ul>
-              </div>
             </div>
           </div>
 
