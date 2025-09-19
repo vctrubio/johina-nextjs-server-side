@@ -8,11 +8,11 @@ export default function HeroSection() {
         <div className="relative">
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 leading-relaxed font-light tracking-wide max-w-2xl mx-auto">
             A painter,{" "}
-            <span className="italic underline decoration-1 underline-offset-2">
+            <span className="italic relative inline-block px-3 py-1 bg-tertiary/80 text-gray-800 rounded-full transform -rotate-1 transition-all duration-300 hover:bg-transparent hover:rotate-0">
               a mother
             </span>{" "}
             and recognized international{" "}
-            <span className="italic underline decoration-1 underline-offset-2">
+            <span className="italic relative inline-block px-3 py-1 bg-fifth/80 text-gray-800 rounded-full transform rotate-1 transition-all duration-300 hover:bg-transparent hover:rotate-0">
               artist
             </span>
           </p>

@@ -13,6 +13,17 @@
   --error-color: var(--fourth);
 }
 
+/* Global text selection highlight */
+::selection {
+  background-color: var(--fifth);
+  color: white;
+}
+
+::-moz-selection {
+  background-color: var(--fifth);
+  color: white;
+}
+
 body {
   background: var(--background);
   min-height: 100vh;

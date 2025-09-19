@@ -1,21 +1,46 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import { Play, Pause, SkipBack, SkipForward } from 'lucide-react';
 
 export default function AboutClient({ carouselImages = [] }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const intervalRef = useRef(null);
 
-  // Auto-change images every 3 seconds
+  // Auto-change images every 3 seconds when playing
   useEffect(() => {
-    if (carouselImages.length <= 1) return;
+    if (carouselImages.length <= 1 || !isPlaying) {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+      return;
+    }
 
-    const interval = setInterval(() => {
+    intervalRef.current = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % carouselImages.length);
     }, 3000);
 
-    return () => clearInterval(interval);
-  }, [carouselImages.length]);
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [carouselImages.length, isPlaying]);
+
+  const togglePlayPause = () => {
+    setIsPlaying(!isPlaying);
+  };
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % carouselImages.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + carouselImages.length) % carouselImages.length);
+  };
 
   // Check if we have carousel images
   const hasCarousel = carouselImages.length > 0;
@@ -69,18 +94,17 @@ export default function AboutClient({ carouselImages = [] }) {
               </p>
 
               <p className="text-lg text-gray-700 leading-relaxed">
-                As both{" "}
+                From intimate private residences to{" "}
                 <span className="italic text-secondary">
-                  a dedicated mother
-                </span>{" "}
-                and{" "}
-                <span className="italic text-secondary">
-                  a passionate creator
+                  royal palaces and embassies
                 </span>
-                , Johina finds inspiration in the delicate balance between
-                family life and artistic expression. Her paintings reflect
-                this duality, often exploring themes of nurturing, growth, and
-                transformation.
+                , from grand hotel lobbies to vibrant restaurants, her murals bring 
+                spaces to life with{" "}
+                <span className="text-primary font-medium">
+                  color, creativity, and storytelling
+                </span>
+                . Each project is a unique collaboration, transforming walls into 
+                windows to new worlds.
               </p>
 
               <p className="text-lg text-gray-700 leading-relaxed">
@@ -97,16 +121,52 @@ export default function AboutClient({ carouselImages = [] }) {
           </div>
         </div>
 
-        {/* Quote Section */}
+        {/* Achievements Section */}
         <div className="mt-20 text-center">
-          <blockquote className="text-xl sm:text-2xl font-light text-secondary italic max-w-3xl mx-auto leading-relaxed">
-            &ldquo;Art is not just what I create&mdash;it&apos;s how I
-            breathe, how I see the world, and how I share my heart with
-            others. Every brushstroke carries a piece of my soul.&rdquo;
-          </blockquote>
-          <cite className="block mt-4 text-gray-600 font-medium">
-            &mdash; Johina G. Concheso
-          </cite>
+          <p className="text-lg text-gray-700 leading-relaxed max-w-5xl mx-auto">
+            My artistic journey has taken me from intimate commissions to prestigious international projects. 
+            I have collaborated with{" "}
+            <a 
+              href="https://www.unesco.org/en" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="font-semibold text-primary px-2 py-1 rounded transition-all duration-300 hover:bg-green-100"
+            >
+              UNESCO
+            </a>{" "}
+            on heritage restoration initiatives and created bespoke murals for{" "}
+            <span className="font-semibold text-secondary">Royal Palaces</span>,{" "}
+            <span className="font-semibold text-tertiary">prestigious Embassies</span>, and iconic venues including{" "}
+            <span className="font-semibold text-fourth">Madrid Towers</span>,{" "}
+            <span className="font-semibold text-fifth">Tanger Continental</span>, and{" "}
+            <a 
+              href="https://hotelmisianatarifa.com/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="font-semibold text-primary px-2 py-1 rounded transition-all duration-300 hover:bg-green-100"
+            >
+              Hotel Misiana in Tarifa
+            </a>
+            . My work has been celebrated in{" "}
+            <a 
+              href="https://www.architecturaldigest.com/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="font-semibold text-secondary px-2 py-1 rounded transition-all duration-300 hover:bg-purple-100"
+            >
+              Architectural Digest
+            </a>{" "}
+            and{" "}
+            <a 
+              href="https://www.elledecor.com/es/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="font-semibold text-tertiary px-2 py-1 rounded transition-all duration-300 hover:bg-orange-100"
+            >
+              Elle Decor
+            </a>
+            .
+          </p>
         </div>
 
         {/* Carousel Section - Only show if images available */}
@@ -158,8 +218,38 @@ export default function AboutClient({ carouselImages = [] }) {
                   })}
                 </div>
 
+                {/* DVD Player Controls */}
+                <div className="absolute bottom-[-5rem] left-1/2 transform -translate-x-1/2 flex items-center space-x-4">
+                  {/* Previous Button */}
+                  <button
+                    onClick={prevImage}
+                    className="p-3 bg-gray-800 hover:bg-gray-700 text-white rounded-full transition-all duration-200 hover:scale-105 shadow-lg"
+                    title="Previous"
+                  >
+                    <SkipBack size={20} />
+                  </button>
+
+                  {/* Play/Pause Button */}
+                  <button
+                    onClick={togglePlayPause}
+                    className="p-4 bg-tertiary hover:bg-tertiary/90 text-white rounded-full transition-all duration-200 hover:scale-105 shadow-lg"
+                    title={isPlaying ? "Pause" : "Play"}
+                  >
+                    {isPlaying ? <Pause size={24} /> : <Play size={24} />}
+                  </button>
+
+                  {/* Next Button */}
+                  <button
+                    onClick={nextImage}
+                    className="p-3 bg-gray-800 hover:bg-gray-700 text-white rounded-full transition-all duration-200 hover:scale-105 shadow-lg"
+                    title="Next"
+                  >
+                    <SkipForward size={20} />
+                  </button>
+                </div>
+
                 {/* Dot Indicators */}
-                <div className="absolute bottom-[-3rem] left-1/2 transform -translate-x-1/2 flex space-x-2">
+                <div className="absolute bottom-[-8rem] left-1/2 transform -translate-x-1/2 flex space-x-2">
                   {carouselImages.map((_, index) => (
                     <button
                       key={index}
@@ -176,6 +266,17 @@ export default function AboutClient({ carouselImages = [] }) {
             </div>
           </section>
         )}
+      </div>
+
+      {/* Footer Quote */}
+      <div className="bg-gray-100 py-12 px-4 mt-16">
+        <div className="max-w-4xl mx-auto text-center">
+          <blockquote className="text-lg sm:text-xl font-light text-gray-700 italic leading-relaxed">
+            &ldquo;Art is not just what I create&mdash;it&apos;s how I
+            breathe, how I see the world, and how I share my heart with
+            others. Every brushstroke carries a piece of my soul.&rdquo;
+          </blockquote>
+        </div>
       </div>
     </main>
   );
