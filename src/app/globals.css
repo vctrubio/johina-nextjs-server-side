@@ -1,26 +1,129 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --primary: #8CB150;
+  --secondary: #5E488D;
+  --tertiary: #FDBE9A;
+  --fourth: #6B68AD;
+  --fifth: #97AAD3;
+  
+  --background: #f9fdf5;
+  --foreground: var(--primary);
+  --h2-color: var(--secondary);
+  --error-color: var(--fourth);
 }
 
 body {
   background: var(--background);
+  min-height: 100vh;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  color: var(--secondary);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  font-weight: 800;
+}
+
+h2 {
+  color: var(--h2-color);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  font-weight: 700;
+}
+
+h3 {
+  color: var(--fourth);
+  font-weight: 600;
+}
+
+h4 {
+  color: var(--fifth);
+  font-weight: 500;
+}
+
+.content-card {
+  background: linear-gradient(135deg, var(--tertiary) 0%, rgba(253, 190, 154, 0.3) 100%);
+  border: 2px solid var(--fifth);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(107, 104, 173, 0.15);
+}
+
+/* Hero Section Styles */
+.hero-title {
+  font-family: 'Dancing Script', 'Brush Script MT', cursive;
+  color: var(--primary);
+  font-weight: 400;
+  line-height: 0.9;
+  text-align: center;
+}
+
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
+
+.font-handwritten {
+  font-family: 'Dancing Script', 'Brush Script MT', cursive;
+}
+
+.bg-gradient-nature {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--fourth) 100%);
+}
+
+.shadow-vibrant {
+  box-shadow: 0 25px 50px -12px rgba(94, 72, 141, 0.25), 
+              0 0 0 1px rgba(151, 170, 211, 0.05);
+}
+
+.bg-background\/50 {
+  background-color: rgba(249, 253, 245, 0.5);
+}
+
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+}
+
+.text-transparent {
+  color: transparent;
+}
+
+.bg-clip-text {
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.text-foreground {
+  color: var(--foreground);
+}
+
+.text-primary {
+  color: var(--primary);
+}
+
+/* About Page Styles */
+.text-secondary {
+  color: var(--secondary);
+}
+
+.text-fourth {
+  color: var(--fourth);
+}
+
+.bg-tertiary {
+  background-color: var(--tertiary);
+}
+
+.bg-fifth {
+  background-color: var(--fifth);
+}
+
+.bg-primary {
+  background-color: var(--primary);
+}
+
+.bg-secondary {
+  background-color: var(--secondary);
+}
+
+.bg-fourth {
+  background-color: var(--fourth);
 }
