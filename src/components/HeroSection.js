@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function HeroSection() {
   return (
     <section className="relative h-screen flex items-center justify-center px-4 z-10">
@@ -15,14 +17,14 @@ export default function HeroSection() {
         <div className="relative">
           <p className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed max-w-5xl mx-auto">
             From{" "}
-            <a 
+            <Link 
               href="https://www.unesco.org/en" 
               target="_blank" 
               rel="noopener noreferrer"
               className="marker-link relative inline-block px-3 py-1 bg-primary/20 text-primary font-semibold rounded-full transform rotate-1 transition-all duration-300 hover:bg-transparent hover:rotate-0 align-baseline"
             >
               UNESCO heritage sites
-            </a>{" "}
+            </Link>{" "}
             to{" "}
             <span className="relative inline-block px-3 py-1 bg-secondary/20 text-secondary font-semibold rounded-full transform -rotate-1 transition-all duration-300 hover:bg-transparent hover:rotate-0">
               Royal Palaces
@@ -32,23 +34,23 @@ export default function HeroSection() {
               Saudi Arabian & Swedish Embassies
             </span>
             , featured in{" "}
-            <a 
+            <Link 
               href="https://www.architecturaldigest.com/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="marker-link relative inline-block px-3 py-1 bg-secondary/20 text-secondary font-semibold rounded-full transform -rotate-2 transition-all duration-300 hover:bg-transparent hover:rotate-0"
             >
               Architectural Digest
-            </a>{" "}
+            </Link>{" "}
             and{" "}
-            <a 
+            <Link 
               href="https://www.elledecor.com/es/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="marker-link relative inline-block px-3 py-1 bg-fifth/20 text-fifth font-semibold rounded-full transform rotate-1 transition-all duration-300 hover:bg-transparent hover:rotate-0"
             >
               Elle Decor
-            </a>
+            </Link>
           </p>
         </div>
       </div>

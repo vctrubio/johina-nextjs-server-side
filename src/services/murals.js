@@ -46,3 +46,19 @@ export async function getMuralsByCategory(categoryId) {
     return null;
   }
 }
+
+export async function getMuralCovers() {
+  try {
+    const response = await client.getEntries({
+      content_type: 'murals',
+      select: 'fields.title,fields.url,fields.category,fields.photos,sys.id',
+      include: 1, // Only include direct references, not nested
+    });
+    
+    console.log('Mural covers data from Contentful:', response);
+    return response;
+  } catch (error) {
+    console.error('Error fetching mural covers:', error);
+    return null;
+  }
+}

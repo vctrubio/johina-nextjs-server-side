@@ -235,3 +235,31 @@ h4 {
 .marker-link:hover {
   background: transparent !important;
 }
+
+/* Mural card marker title effect */
+.marker-title {
+  transition: all 0.5s ease-in-out;
+}
+
+.group:hover .marker-title {
+  background-color: var(--marker-color);
+  color: var(--marker-text-color);
+  font-weight: 600;
+}
+
+/* Footer icon bounce animation - limited to 1 second */
+@keyframes bounce-once {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-6px);
+  }
+  60% {
+    transform: translateY(-3px);
+  }
+}
+
+.bounce-once {
+  animation: bounce-once 1s ease-in-out;
+}

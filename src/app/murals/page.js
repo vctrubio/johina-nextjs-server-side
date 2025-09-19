@@ -1,4 +1,4 @@
-import { getMurals } from "../../services/murals";
+import { getMuralCovers } from "../../services/murals";
 import { getCategories } from "../../services/categories";
 import MuralsClient from "../../components/MuralsClient";
 
@@ -60,7 +60,7 @@ export const metadata = {
 
 export default async function MuralsPage() {
   const [muralsData, categoriesData] = await Promise.all([
-    getMurals(),
+    getMuralCovers(),
     getCategories(),
   ]);
 

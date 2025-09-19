@@ -12,3 +12,11 @@ export const ROUTE_COLORS = {
   '/murals': COLORS.secondary,
   '/about': COLORS.tertiary
 };
+
+// Category-specific colors for murals
+export const CATEGORY_COLORS = {
+  'Hotels': COLORS.primary,      // Green
+  'Restaurants': COLORS.secondary, // Purple  
+  'Private Residences': COLORS.tertiary, // Orange
+  'Other': COLORS.fourth         // Blue-purple
+};
