@@ -39,7 +39,7 @@ export default function FloatingBackground({ floatersData }) {
     // Create floating images with random properties - using ALL available images
     const images = shuffledUrls.map((url, i) => ({
       id: i,
-      x: Math.random() * 100,
+      x: 5 + Math.random() * 90,
       y: Math.random() * 100,
       size: Math.random() * 180 + 120,
       rotation: Math.random() * 360,
@@ -55,7 +55,7 @@ export default function FloatingBackground({ floatersData }) {
   if (!floatingImages.length) return null;
 
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+    <div className="fixed inset-0 pointer-events-none">
       {floatingImages.map((image) => (
         <div
           key={image.id}

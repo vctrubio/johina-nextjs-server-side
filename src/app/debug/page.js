@@ -1,8 +1,7 @@
-import { getBackgroundFloaters } from '../../services/backgroundFloaters';
-import { getBannerPhotos } from '../../services/bannerPhotos';
-import ColorPaletteDebug from '../../components/ColorPaletteDebug';
-import ModelDebug from '../../components/ModelDebug';
-import Navbar from '../../components/Navbar';
+import { getBackgroundFloaters } from "../../services/backgroundFloaters";
+import { getBannerPhotos } from "../../services/bannerPhotos";
+import ColorPaletteDebug from "../../components/ColorPaletteDebug";
+import ModelDebug from "../../components/ModelDebug";
 
 export default async function DebugPage() {
   const floatersData = await getBackgroundFloaters();
@@ -13,7 +12,7 @@ export default async function DebugPage() {
       <div>
         <h1>Johina Debug Dashboard</h1>
         <h2>Development Tools</h2>
-        
+
         <ColorPaletteDebug />
         <ModelDebug floatersData={floatersData} bannerData={bannerData} />
       </div>

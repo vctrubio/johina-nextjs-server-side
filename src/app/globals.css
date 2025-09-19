@@ -69,6 +69,22 @@ h4 {
   background: linear-gradient(135deg, hsl(95, 35%, 45%) 0%, hsl(145, 25%, 55%) 50%, hsl(200, 25%, 65%) 100%);
 }
 
+.bg-gradient-secondary {
+  background: linear-gradient(135deg, hsl(145, 25%, 55%), hsl(145, 30%, 65%));
+}
+
+.bg-gradient-primary {
+  background: linear-gradient(135deg, hsl(25, 45%, 35%), hsl(25, 35%, 45%));
+}
+
+.bg-muted\/30 {
+  background-color: rgba(249, 253, 245, 0.3);
+}
+
+.shadow-floating {
+  box-shadow: 0 16px 48px -16px rgba(94, 72, 141, 0.15);
+}
+
 .shadow-vibrant {
   box-shadow: 0 25px 50px -12px rgba(94, 72, 141, 0.25), 
               0 0 0 1px rgba(151, 170, 211, 0.05);
@@ -143,4 +159,18 @@ h4 {
 
 .animate-float-slow {
   animation: float-slow 8s ease-in-out infinite;
+}
+
+/* Gallery float animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
