@@ -43,6 +43,7 @@ export default function MuralDetailClient({
                   })
                   .filter(Boolean)}
                 title={""}
+                enableLightbox={true}
               />
             )}
           </div>
@@ -115,16 +116,16 @@ export default function MuralDetailClient({
           <Link
             href="/murals"
             className="inline-flex items-center px-10 py-4 rounded-full font-serif text-lg font-light tracking-wide transition-all duration-1000 ease-in-out border-2 bg-transparent"
-            style={{ 
+            style={{
               borderColor: categoryColor,
-              color: categoryColor 
+              color: categoryColor,
             }}
             onMouseEnter={(e) => {
               e.target.style.backgroundColor = categoryColor;
-              e.target.style.color = 'white';
+              e.target.style.color = "white";
             }}
             onMouseLeave={(e) => {
-              e.target.style.backgroundColor = 'transparent';
+              e.target.style.backgroundColor = "transparent";
               e.target.style.color = categoryColor;
             }}
           >

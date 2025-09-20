@@ -3,11 +3,37 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { Play, Pause, SkipBack, SkipForward } from "lucide-react";
+import ImageGallery from "react-image-gallery";
+import "react-image-gallery/styles/css/image-gallery.css";
 
-export default function ImageCarousel({ images = [], title = "Gallery" }) {
+export default function ImageCarousel({ images = [], title = "Gallery", enableLightbox = false }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
+  const [showLightbox, setShowLightbox] = useState(false);
   const intervalRef = useRef(null);
+
+  // Handle ESC key to close lightbox
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape' && showLightbox) {
+        setShowLightbox(false);
+      }
+    };
+
+    if (showLightbox) {
+      document.addEventListener('keydown', handleKeyDown);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [showLightbox]);
+
+  // Prepare images for react-image-gallery
+  const galleryImages = images.map((url) => ({
+    original: url,
+    thumbnail: url,
+  }));
 
   // Auto-change images every 3 seconds when playing
   useEffect(() => {
@@ -76,7 +102,15 @@ export default function ImageCarousel({ images = [], title = "Gallery" }) {
                     opacity:
                       Math.abs(offset) > 2 ? 0 : isActive ? 1 : 0.7,
                   }}
-                  onClick={() => setCurrentImageIndex(index)}
+                  onClick={() => {
+                    if (enableLightbox) {
+                      setIsPlaying(false); // Stop autoplay when opening lightbox
+                      setShowLightbox(true);
+                      setCurrentImageIndex(index);
+                    } else {
+                      setCurrentImageIndex(index);
+                    }
+                  }}
                 >
                   <Image
                     src={imageUrl}
@@ -145,6 +179,48 @@ export default function ImageCarousel({ images = [], title = "Gallery" }) {
           </div>
         </div>
       </div>
+
+      {/* Lightbox */}
+      {enableLightbox && showLightbox && (
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center p-4">
+          <div className="w-full max-w-5xl mx-auto">
+            <ImageGallery
+              items={galleryImages}
+              startIndex={currentImageIndex}
+              showThumbnails={true}
+              showPlayButton={false}
+              showFullscreenButton={false}
+              onSlide={(index) => setCurrentImageIndex(index)}
+              onScreenChange={() => {}}
+              additionalClass="custom-gallery"
+              renderLeftNav={(onClick, disabled) => (
+                <button
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 p-3 bg-gray-800 hover:bg-gray-700 text-white rounded-full transition-all duration-200 hover:scale-105 shadow-lg z-10"
+                  disabled={disabled}
+                  onClick={onClick}
+                >
+                  <SkipBack size={20} />
+                </button>
+              )}
+              renderRightNav={(onClick, disabled) => (
+                <button
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 p-3 bg-gray-800 hover:bg-gray-700 text-white rounded-full transition-all duration-200 hover:scale-105 shadow-lg z-10"
+                  disabled={disabled}
+                  onClick={onClick}
+                >
+                  <SkipForward size={20} />
+                </button>
+              )}
+            />
+          </div>
+          <button
+            onClick={() => setShowLightbox(false)}
+            className="absolute top-4 right-4 text-white text-2xl bg-black bg-opacity-50 rounded-full w-10 h-10 flex items-center justify-center hover:bg-opacity-75 transition-all"
+          >
+            ×
+          </button>
+        </div>
+      )}
     </section>
   );
 }
