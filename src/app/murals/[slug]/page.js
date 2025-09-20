@@ -9,8 +9,27 @@ import { SITE_CONFIG, getMuralUrl } from '../../../lib/constants';
 function generateMuralMetadata(muralData, params) {
   const mural = muralData.fields;
   const photos = mural.photos || [];
-  const firstPhoto = photos[0]?.fields?.file?.url;
-  const imageUrl = firstPhoto ? (firstPhoto.startsWith('//') ? `https:${firstPhoto}` : firstPhoto) : '/meta-johina.jpg';
+  
+  // Better image extraction logic - try multiple Contentful structure patterns
+  let firstPhoto = null;
+  if (photos.length > 0) {
+    const photo = photos[0];
+    // Try different possible Contentful asset structures
+    firstPhoto = photo?.fields?.file?.url ||           // Standard asset reference
+                 photo?.fields?.url ||                  // Direct URL field
+                 photo?.url ||                          // Sometimes direct on object
+                 (typeof photo === 'string' ? photo : null); // Direct URL string
+  }
+  
+  // Also try other possible image fields
+  const coverPhoto = mural.coverPhoto?.fields?.file?.url || mural.cover?.fields?.file?.url;
+  const thumbnailPhoto = mural.thumbnail?.fields?.file?.url;
+  const featuredImage = mural.featuredImage?.fields?.file?.url;
+  
+  // Use the best available image in order of preference
+  const bestImage = coverPhoto || featuredImage || thumbnailPhoto || firstPhoto;
+  const imageUrl = bestImage ? (bestImage.startsWith('//') ? `https:${bestImage}` : bestImage) : '/meta-johina.jpg';
+  
 
   const title = mural.title;
   const description = mural.description || `Stunning mural by internationally renowned artist Johina G. Concheso. Featured in prestigious venues worldwide.`;
