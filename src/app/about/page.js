@@ -18,9 +18,9 @@ export const metadata = {
     siteName: SITE_CONFIG.SITE_NAME,
     images: [
       {
-        url: getAbsoluteUrl('/johina-profile.jpg'),
+        url: getAbsoluteUrl('/meta-johina.jpg'),
         width: 1200,
-        height: 630,
+        height: 1059,
         alt: "Johina G. Concheso - International Muralist and Artist Portrait",
       },
     ],
@@ -36,7 +36,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "About | Johina",
     description: "Meet the renowned international muralist creating stunning murals for UNESCO heritage sites, Royal Palaces, and prestigious venues worldwide.",
-    images: [getAbsoluteUrl('/johina-profile.jpg')],
+    images: [getAbsoluteUrl('/meta-johina.jpg')],
     creator: SITE_CONFIG.TWITTER_HANDLE,
   },
   

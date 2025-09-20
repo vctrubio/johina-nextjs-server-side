@@ -19,9 +19,9 @@ export const metadata = {
     siteName: SITE_CONFIG.SITE_NAME,
     images: [
       {
-        url: getAbsoluteUrl('/johina-profile.jpg'),
+        url: getAbsoluteUrl('/meta-johina.jpg'),
         width: 1200,
-        height: 630,
+        height: 1059,
         alt: "Johina G. Concheso Mural Portfolio - International Muralist Gallery",
       },
     ],
@@ -32,7 +32,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Murals | Johina",
     description: "Explore stunning custom murals for hotels, restaurants, UNESCO heritage sites, Royal Palaces, and prestigious embassies by internationally renowned artist Johina G. Concheso.",
-    images: [getAbsoluteUrl('/johina-profile.jpg')],
+    images: [getAbsoluteUrl('/meta-johina.jpg')],
     creator: SITE_CONFIG.TWITTER_HANDLE,
   },
   
