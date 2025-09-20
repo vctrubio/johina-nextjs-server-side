@@ -14,12 +14,12 @@ export default function MuralGrid({ filteredMurals, getCategoryName }) {
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-[2400px] mx-auto">
+    <div className="flex flex-wrap gap-6 max-w-[2400px] mx-auto justify-center">
       {filteredMurals.map((mural) => {
         const categoryName = getCategoryName(mural.fields.category?.sys?.id);
 
         return (
-          <div key={mural.sys.id}>
+          <div key={mural.sys.id} className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] xl:w-[calc(25%-1.125rem)]">
             <MuralCard mural={mural} categoryName={categoryName} />
           </div>
         );

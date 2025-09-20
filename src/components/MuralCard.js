@@ -22,9 +22,9 @@ export default function MuralCard({ mural, categoryName }) {
       href={`/murals/${mural.fields.url}`}
       className="group block w-full"
     >
-      <div className="relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1 h-96 sm:h-[28rem] lg:h-[32rem]">
+      <div className="relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1 h-[28rem] sm:h-[36rem] lg:h-[40rem]">
         {/* Cover Image */}
-        <div className="relative h-80 sm:h-96 lg:h-[26rem] overflow-hidden">
+        <div className="relative h-96 sm:h-[30rem] lg:h-[34rem] overflow-hidden">
           <Image
             src={
               fullImageUrl && !imageError ? fullImageUrl : "/img-not-found.jpg"
