@@ -64,7 +64,7 @@ export default function MuralIntro({
         <div className="w-24 h-0.5 bg-gray-300 mx-auto my-6"></div>
         
         <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
-          With a Master's from Christie's and a degree in restoration, she brings history to life through murals, fabric patterns, and stage backgrounds.
+          With a Master&apos;s from Christie&apos;s and a degree in restoration, she brings history to life through murals, fabric patterns, and stage backgrounds.
         </p>
       </div>
     </div>

@@ -105,7 +105,7 @@ export default function NotFound() {
               Oops! Page not found
             </h2>
             <p className="text-lg text-gray-600 mb-8">
-              The page you're looking for doesn't exist, but here are some beautiful murals you might enjoy instead.
+              The page you&apos;re looking for doesn&apos;t exist, but here are some beautiful murals you might enjoy instead.
             </p>
           </div>
 

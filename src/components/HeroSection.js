@@ -10,7 +10,7 @@ export default function HeroSection() {
         
         <div className="relative mb-8">
           <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed font-light tracking-wide max-w-4xl mx-auto">
-            International muralist bringing art to the world's most prestigious spaces
+            International muralist bringing art to the world&apos;s most prestigious spaces
           </p>
         </div>
 
