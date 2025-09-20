@@ -3,38 +3,42 @@ import { getCategories } from "../../../services/categories";
 import { notFound } from "next/navigation";
 import MuralDetailClient from "../../../components/MuralDetailClient";
 import MuralFooter from "../../../components/MuralFooter";
-import { SITE_CONFIG, getMuralUrl } from "../../../lib/constants";
+import { SITE_CONFIG, getMuralUrl, getAbsoluteUrl } from "../../../lib/constants";
 
 // Metadata generation component
 function generateMuralMetadata(muralData, params) {
   const mural = muralData.fields;
   const photos = mural.photos || [];
 
-  // Better image extraction logic - try multiple Contentful structure patterns
+  // Extract first photo using the same logic as the preload section (line 165)
   let firstPhoto = null;
   if (photos.length > 0) {
     const photo = photos[0];
-    // Try different possible Contentful asset structures
-    firstPhoto =
-      photo?.fields?.file?.url || // Standard asset reference
-      photo?.fields?.url || // Direct URL field
-      photo?.url || // Sometimes direct on object
-      (typeof photo === "string" ? photo : null); // Direct URL string
+    firstPhoto = photo?.fields?.file?.url;
+    
+    // Debug logging to understand structure when photo extraction fails
+    if (!firstPhoto && process.env.NODE_ENV === 'development') {
+      console.log('Photo extraction failed for mural:', mural.title);
+      console.log('Photos array length:', photos.length);
+      console.log('First photo structure:', JSON.stringify(photo, null, 2));
+    }
   }
 
-  // Also try other possible image fields
+  // Also try other possible image fields as fallbacks
   const coverPhoto =
     mural.coverPhoto?.fields?.file?.url || mural.cover?.fields?.file?.url;
   const thumbnailPhoto = mural.thumbnail?.fields?.file?.url;
   const featuredImage = mural.featuredImage?.fields?.file?.url;
 
   // Use the best available image in order of preference
-  const bestImage = coverPhoto || featuredImage || thumbnailPhoto || firstPhoto;
+  const bestImage = firstPhoto || coverPhoto || featuredImage || thumbnailPhoto;
   const imageUrl = bestImage
     ? bestImage.startsWith("//")
       ? `https:${bestImage}`
-      : bestImage
-    : "/meta-johina.jpg";
+      : bestImage.startsWith("http")
+      ? bestImage
+      : getAbsoluteUrl(bestImage)
+    : getAbsoluteUrl("/meta-johina.jpg");
 
   const title = `${mural.title} | Johina`;
   const description =
