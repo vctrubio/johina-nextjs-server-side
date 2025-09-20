@@ -130,11 +130,9 @@ export default function NotFound() {
           {/* Recommended Murals */}
           {recommendedMurals.length > 0 && (
             <div>
-              <h3 className="font-handwritten text-2xl font-bold text-gray-800 mb-6">
-                Discover these murals
-              </h3>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {recommendedMurals.map((mural) => {
                   const coverPhoto = mural.fields.photos?.[0];
                   const coverImageUrl = coverPhoto?.fields?.file?.url;
@@ -156,22 +154,14 @@ export default function NotFound() {
                               alt={mural.fields.title || 'Mural'}
                               fill
                               className="object-cover transition-all duration-500 group-hover:scale-110"
-                              onError={(e) => {
-                                e.target.style.display = 'none';
-                              }}
                             />
                           </div>
                         )}
-                        
+
                         <div className="p-4">
-                          <h4 className="font-handwritten text-lg font-bold text-gray-800 group-hover:text-primary transition-colors">
+                          <h3 className="font-serif text-xl font-light text-gray-800 group-hover:text-primary transition-colors">
                             {mural.fields.title}
-                          </h4>
-                          {mural.fields.description && (
-                            <p className="text-sm text-gray-600 mt-2 line-clamp-2">
-                              {mural.fields.description}
-                            </p>
-                          )}
+                          </h3>
                         </div>
                       </div>
                     </Link>

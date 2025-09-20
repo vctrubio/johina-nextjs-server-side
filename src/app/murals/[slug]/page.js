@@ -8,19 +8,18 @@ import { SITE_CONFIG, getMuralUrl } from '../../../lib/constants';
 // Metadata generation component
 function generateMuralMetadata(muralData, params) {
   const mural = muralData.fields;
-  const categoryName = mural.category.fields.name;
   const photos = mural.photos || [];
   const firstPhoto = photos[0]?.fields?.file?.url;
   const imageUrl = firstPhoto ? (firstPhoto.startsWith('//') ? `https:${firstPhoto}` : firstPhoto) : '/johina-profile.jpg';
 
   const title = mural.title;
-  const description = mural.description || `Stunning ${categoryName.toLowerCase()} mural by internationally renowned artist Johina G. Concheso. Featured in prestigious venues worldwide.`;
+  const description = mural.description || `Stunning mural by internationally renowned artist Johina G. Concheso. Featured in prestigious venues worldwide.`;
   const absoluteUrl = getMuralUrl(params.slug);
 
   return {
     title,
     description,
-    keywords: `${mural.title}, ${categoryName} mural, Johina G. Concheso, muralist, custom mural, wall art, interior design, UNESCO heritage sites, Royal Palaces, Saudi Arabian Embassy, Swedish Embassy, Architectural Digest, Elle Decor`,
+    keywords: `${mural.title}, Johina G. Concheso, muralist, custom mural, wall art, interior design, UNESCO heritage sites, Royal Palaces, Saudi Arabian Embassy, Swedish Embassy, Architectural Digest, Elle Decor`,
     author: SITE_CONFIG.AUTHOR,
     creator: SITE_CONFIG.AUTHOR,
     
@@ -36,13 +35,13 @@ function generateMuralMetadata(muralData, params) {
           url: imageUrl,
           width: 1200,
           height: 630,
-          alt: `${mural.title} - ${categoryName} mural by Johina G. Concheso`,
+          alt: `${mural.title} - mural by Johina G. Concheso`,
         },
       ],
       article: {
         author: 'Johina G. Concheso',
         section: 'Art & Murals',
-        tag: [categoryName, 'Mural', 'Art', 'Interior Design'].filter(Boolean),
+        tag: ['Mural', 'Art', 'Interior Design'].filter(Boolean),
         publishedTime: muralData.sys.createdAt,
         modifiedTime: muralData.sys.updatedAt,
       },
@@ -59,19 +58,18 @@ function generateMuralMetadata(muralData, params) {
     
     // Additional SEO
     category: 'Art & Culture',
-    classification: `${categoryName} Mural`,
     
     // Structured data hints
     other: {
       'article:author': 'Johina G. Concheso',
       'article:section': 'Murals',
-      'og:image:alt': `${mural.title} - ${categoryName} mural by Johina G. Concheso`,
+      'og:image:alt': `${mural.title} - mural by Johina G. Concheso`,
       
       // Additional sharing meta tags
       'og:image:width': '1200',
       'og:image:height': '630',
       'og:image:type': 'image/jpeg',
-      'twitter:image:alt': `${mural.title} - ${categoryName} mural by Johina G. Concheso`,
+      'twitter:image:alt': `${mural.title} - mural by Johina G. Concheso`,
       
       // App specific meta tags for native sharing
       'apple-mobile-web-app-title': `${mural.title} by Johina G. Concheso`,

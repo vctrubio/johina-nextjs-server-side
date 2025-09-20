@@ -31,9 +31,11 @@ export default function MuralDetailClient({
           </h1>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/* Left: Image Carousel */}
-          <div className="">
+        <div
+          className={mural.fields.description ? "grid grid-cols-1 lg:grid-cols-2 gap-16" : "flex justify-center"}
+        >
+          {/* Image Carousel */}
+          <div className={mural.fields.description ? "" : "w-full lg:w-4/5"}>
             {photos.length > 0 && (
               <ImageCarousel
                 images={photos
@@ -48,16 +50,16 @@ export default function MuralDetailClient({
             )}
           </div>
 
-          {/* Right: Description */}
-          <div className="flex items-center mt-2">
-            {mural.fields.description && (
+          {/* Description */}
+          {mural.fields.description && (
+            <div className="flex items-center mt-2">
               <div className="pt-8 mx-auto text-center">
                 <p className="font-light text-2xl text-gray-800 leading-relaxed tracking-wide">
                   {mural.fields.description}
                 </p>
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
 
         {/* Related Murals Section */}
