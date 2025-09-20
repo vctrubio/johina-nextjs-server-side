@@ -18,6 +18,9 @@ export default function MuralDetailClient({
   const categoryColor = CATEGORY_COLORS[categoryName] || "#8CB150";
   const tertiaryColor = COLORS.tertiary;
 
+  // Shuffle related murals to randomize order
+  const shuffledRelatedMurals = [...relatedMurals].sort(() => Math.random() - 0.5);
+
   return (
     <main className="min-h-screen bg-white py-12 px-4">
       <div className="max-w-6xl mx-auto">
@@ -75,7 +78,7 @@ export default function MuralDetailClient({
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {relatedMurals.map((related) => {
+              {shuffledRelatedMurals.map((related) => {
                 const coverPhoto = related.fields.photos?.[0];
                 const coverImageUrl = coverPhoto?.fields?.file?.url;
                 const fullImageUrl = coverImageUrl?.startsWith("//")
@@ -100,7 +103,7 @@ export default function MuralDetailClient({
                         </div>
                       )}
 
-                      <div className="p-4">
+                      <div className="p-4 text-center">
                         <h3 className="font-serif text-xl font-light text-gray-800 group-hover:text-primary transition-colors">
                           {related.fields.title}
                         </h3>
