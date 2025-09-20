@@ -1,7 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import { MessageCircle, Instagram } from "lucide-react";
 import ImageCarousel from "./ImageCarousel";
+import { SITE_CONFIG } from "../lib/constants";
 
 export default function AboutClient({ carouselImages = [] }) {
   // Check if we have carousel images
@@ -40,60 +43,64 @@ export default function AboutClient({ carouselImages = [] }) {
           {/* Text Content */}
           <div className="space-y-6">
             <div className="space-y-4">
-              <h2 className="text-2xl sm:text-3xl font-light text-secondary mb-6">
+              <h2 className="text-2xl sm:text-3xl font-light text-secondary mb-6 px-4">
                 Artist, Mother, Visionary
               </h2>
 
-              <p className="text-lg text-gray-700 leading-relaxed">
-                Johina G. Concheso is a{" "}
-                <span className="text-primary font-medium">
-                  renowned international artist
-                </span>{" "}
-                whose vibrant works capture the essence of human emotion and
-                natural beauty. With over two decades of artistic experience,
-                she has developed a distinctive style that bridges contemporary
-                techniques with classical sensibilities.
-              </p>
+              <div className="px-4 space-y-6 text-xl lg:text-lg text-gray-700 leading-relaxed">
+                <p>
+                  Johina G. Concheso is a{" "}
+                  <span className="text-primary font-medium">
+                    renowned international artist
+                  </span>{" "}
+                  whose vibrant works capture the essence of human emotion and
+                  natural beauty. With over two decades of artistic experience,
+                  she has developed a distinctive style that bridges
+                  contemporary techniques with classical sensibilities.
+                </p>
 
-              <p className="text-lg text-gray-700 leading-relaxed">
-                From intimate private residences to{" "}
-                <span className="italic text-secondary">
-                  royal palaces and embassies
-                </span>
-                , from grand hotel lobbies to vibrant restaurants, her murals
-                bring spaces to life with{" "}
-                <span className="text-primary font-medium">
-                  color, creativity, and storytelling
-                </span>
-                . Each project is a unique collaboration, transforming walls
-                into windows to new worlds.
-              </p>
+                <p>
+                  From intimate private residences to{" "}
+                  <span className="italic text-secondary">
+                    royal palaces and embassies
+                  </span>
+                  , from grand hotel lobbies to vibrant restaurants, her murals
+                  bring spaces to life with{" "}
+                  <span className="text-primary font-medium">
+                    color, creativity, and storytelling
+                  </span>
+                  . Each project is a unique collaboration, transforming walls
+                  into windows to new worlds.
+                </p>
 
-              <p className="text-lg text-gray-700 leading-relaxed">
-                Her work has been exhibited internationally, earning recognition
-                for its{" "}
-                <span className="text-fourth font-medium">emotional depth</span>{" "}
-                and technical mastery. Johina&apos;s art invites viewers into a
-                world where color and form dance together, creating visual
-                poetry that speaks to the soul.
-              </p>
+                <p>
+                  Her work has been exhibited internationally, earning
+                  recognition for its{" "}
+                  <span className="text-fourth font-medium">
+                    emotional depth
+                  </span>{" "}
+                  and technical mastery. Johina&apos;s art invites viewers into
+                  a world where color and form dance together, creating visual
+                  poetry that speaks to the soul.
+                </p>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Achievements Section */}
         <div className="mt-20 text-center">
-          <p className="text-lg text-gray-700 leading-relaxed max-w-5xl mx-auto">
-            My artistic journey has taken me from intimate commissions to
+          <blockquote className="text-xl sm:text-2xl font-medium text-gray-500 leading-relaxed max-w-5xl mx-auto tracking-wide">
+            &ldquo;My artistic journey has taken me from intimate commissions to
             prestigious international projects. I have collaborated with{" "}
-            <a
+            <Link
               href="https://www.unesco.org/en"
               target="_blank"
               rel="noopener noreferrer"
               className="font-semibold text-primary px-2 py-1 rounded transition-all duration-300 hover:bg-green-100"
             >
               UNESCO
-            </a>{" "}
+            </Link>{" "}
             on heritage restoration initiatives and created bespoke murals for{" "}
             <span className="font-semibold text-secondary">Royal Palaces</span>,{" "}
             <span className="font-semibold text-tertiary">
@@ -103,34 +110,34 @@ export default function AboutClient({ carouselImages = [] }) {
             <span className="font-semibold text-fourth">Madrid Towers</span>,{" "}
             <span className="font-semibold text-fifth">Tanger Continental</span>
             , and{" "}
-            <a
+            <Link
               href="https://hotelmisianatarifa.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="font-semibold text-primary px-2 py-1 rounded transition-all duration-300 hover:bg-green-100"
             >
               Hotel Misiana in Tarifa
-            </a>
+            </Link>
             . My work has been celebrated in{" "}
-            <a
+            <Link
               href="https://www.architecturaldigest.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="font-semibold text-secondary px-2 py-1 rounded transition-all duration-300 hover:bg-purple-100"
             >
               Architectural Digest
-            </a>{" "}
+            </Link>{" "}
             and{" "}
-            <a
+            <Link
               href="https://www.elledecor.com/es/"
               target="_blank"
               rel="noopener noreferrer"
               className="font-semibold text-fifth px-2 py-1 rounded transition-all duration-300 hover:bg-orange-100"
             >
               Elle Decor
-            </a>
-            .
-          </p>
+            </Link>
+            .&rdquo;
+          </blockquote>
         </div>
 
         {/* Carousel Section - Only show if images available */}
@@ -141,11 +148,33 @@ export default function AboutClient({ carouselImages = [] }) {
 
       {/* Footer Quote */}
       <div className="bg-gray-100 py-12 px-4 mt-16">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-5xl mx-auto text-center">
           <blockquote className="text-lg sm:text-xl font-light text-gray-700 italic leading-relaxed">
             &ldquo;Art is not just what I create&mdash;it&apos;s how I breathe,
-            how I see the world, and how I share my heart with others. Every
-            brushstroke carries a piece of my soul.&rdquo;
+            how I see the world, and how I share my heart with others.
+            <div className="mt-6 text-right">
+              <span className="font-handwritten text-4xl sm:text-5xl text-primary opacity-90">
+                ~ Johina
+              </span>
+              <div className="flex justify-end gap-4 mt-4">
+                <a
+                  href={`https://wa.me/${SITE_CONFIG.WHATSAPP_NUMBER}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-600 hover:text-primary transition-all duration-300 hover:scale-110 hover:rotate-6"
+                >
+                  <MessageCircle size={24} />
+                </a>
+                <a
+                  href={SITE_CONFIG.INSTAGRAM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-600 hover:text-primary transition-all duration-300 hover:scale-110 hover:-rotate-6"
+                >
+                  <Instagram size={24} />
+                </a>
+              </div>
+            </div>
           </blockquote>
         </div>
       </div>

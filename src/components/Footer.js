@@ -1,5 +1,5 @@
 "use client";
-import { Phone, Mail, Instagram } from "lucide-react";
+import { Phone, Mail, Instagram, MessageCircle } from "lucide-react";
 import Link from "next/link";
 import { COLORS } from "../lib/colors";
 
@@ -15,6 +15,24 @@ export default function Footer() {
             Johina G. Concheso
           </h3>
           <p className="text-gray-600 text-sm mt-1">Muralist based in Madrid</p>
+          <div className="flex items-center gap-3 mt-2">
+            <a
+              href="https://wa.me/34609988138"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-600 hover:text-primary transition-all duration-300 hover:scale-110"
+            >
+              <MessageCircle size={20} />
+            </a>
+            <a
+              href="https://www.instagram.com/johinagconcheso/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-600 hover:text-primary transition-all duration-300 hover:scale-110"
+            >
+              <Instagram size={20} />
+            </a>
+          </div>
           <Link
             href="/murals"
             className="inline-block mt-2 text-sm font-medium transition-all duration-300 hover:scale-105"
