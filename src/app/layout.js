@@ -28,8 +28,8 @@ export const metadata = {
     images: [
       {
         url: getAbsoluteUrl('/johina-profile.jpg'),
-        width: 1200,
-        height: 630,
+        width: 1342,
+        height: 1184,
         alt: "Johina G. Concheso - International Muralist and Artist",
       },
     ],
