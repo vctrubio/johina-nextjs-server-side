@@ -131,8 +131,29 @@ export default async function MuralDetailPage({ params }) {
   const categories = categoriesData?.items || [];
   const relatedMurals = await getRelatedMurals(muralData);
 
+  // Preload images on server side for better performance
+  const photos = muralData.fields.photos || [];
+  const preloadImages = photos
+    .map((photo) => {
+      const url = photo?.fields?.file?.url;
+      return url?.startsWith("//") ? `https:${url}` : url;
+    })
+    .filter(Boolean);
+
   return (
     <>
+      {/* Preload images */}
+      {preloadImages.map((src, index) => (
+        <link
+          key={src}
+          rel="preload"
+          as="image"
+          href={src}
+          // Priority for first image
+          {...(index === 0 && { fetchPriority: "high" })}
+        />
+      ))}
+      
       <MuralDetailClient 
         mural={muralData} 
         categories={categories} 

@@ -12,6 +12,16 @@ export default function ImageCarousel({ images = [], title = "Gallery", enableLi
   const [showLightbox, setShowLightbox] = useState(false);
   const intervalRef = useRef(null);
 
+  // Preload all images in background for smooth transitions
+  useEffect(() => {
+    images.forEach((src, index) => {
+      if (index > 0) { // Skip first image as it's already prioritized
+        const img = new window.Image();
+        img.src = src;
+      }
+    });
+  }, [images]);
+
   // Handle ESC key to close lightbox
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -117,6 +127,8 @@ export default function ImageCarousel({ images = [], title = "Gallery", enableLi
                     alt={`Gallery image ${index + 1}`}
                     fill
                     className="object-contain"
+                    priority={index === 0}
+                    loading={index === 0 ? "eager" : "lazy"}
                     onError={(e) => {
                       console.log(
                         "Image failed to load:",
