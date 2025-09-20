@@ -130,10 +130,6 @@ export default function ImageCarousel({ images = [], title = "Gallery", enableLi
                     priority={index === 0}
                     loading={index === 0 ? "eager" : "lazy"}
                     onError={(e) => {
-                      console.log(
-                        "Image failed to load:",
-                        imageUrl,
-                      );
                       e.target.style.display = "none";
                     }}
                   />

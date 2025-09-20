@@ -5,7 +5,6 @@ import { SITE_CONFIG } from "../lib/constants";
 
 export default function MuralFooter({
   mural,
-  slug,
   whatsappNumber = SITE_CONFIG.WHATSAPP_NUMBER,
 }) {
   const pathname = usePathname();

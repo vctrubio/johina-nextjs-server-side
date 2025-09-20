@@ -59,10 +59,9 @@ const GalleryItem = ({ imageUrl, index }) => {
               height={layout.size.h}
               className="h-auto object-cover transition-all duration-700 group-hover:scale-110 relative z-20"
               onError={(e) => {
-                console.log('Gallery image failed to load:', imageUrl);
                 e.target.style.display = 'none';
               }}
-              onLoad={() => console.log('Gallery image loaded successfully:', imageUrl)}
+              onLoad={() => {}}
             />
             
             {/* Hover overlay */}
@@ -100,7 +99,6 @@ const GalleryItem = ({ imageUrl, index }) => {
 
 export default function GalleryGrid({ bannersData }) {
   if (!bannersData?.entries?.length) {
-    console.log('No banners data:', bannersData);
     return null;
   }
 
@@ -118,10 +116,7 @@ export default function GalleryGrid({ bannersData }) {
     }
   });
 
-  console.log('Gallery images extracted:', galleryImages);
-
   if (galleryImages.length === 0) {
-    console.log('No valid gallery images found');
     return null;
   }
 

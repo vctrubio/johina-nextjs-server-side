@@ -8,7 +8,6 @@ export default function FloatingBackground({ floatersData }) {
 
   useEffect(() => {
     if (!floatersData?.entries?.length) {
-      console.log('No floaters data:', floatersData);
       return;
     }
 
@@ -26,10 +25,7 @@ export default function FloatingBackground({ floatersData }) {
       }
     });
 
-    console.log('Extracted image URLs:', imageUrls);
-
     if (imageUrls.length === 0) {
-      console.log('No valid image URLs found');
       return;
     }
 
@@ -48,7 +44,6 @@ export default function FloatingBackground({ floatersData }) {
       opacity: 0.8 + Math.random() * 0.2,
     }));
 
-    console.log('Generated floating images:', images);
     setFloatingImages(images);
   }, [floatersData]);
 
@@ -77,10 +72,9 @@ export default function FloatingBackground({ floatersData }) {
               fill
               className="object-cover"
               onError={(e) => {
-                console.log('Image failed to load:', image.imageUrl);
                 e.target.style.display = 'none';
               }}
-              onLoad={() => console.log('Image loaded successfully:', image.imageUrl)}
+              onLoad={() => {}}
             />
           )}
         </div>

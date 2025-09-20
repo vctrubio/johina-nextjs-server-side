@@ -14,7 +14,7 @@ function generateMuralMetadata(muralData, params) {
 
   const title = mural.title;
   const description = mural.description || `Stunning mural by internationally renowned artist Johina G. Concheso. Featured in prestigious venues worldwide.`;
-  const absoluteUrl = getMuralUrl(params.slug);
+  const absoluteUrl = getMuralUrl(mural.url);
 
   return {
     title,
@@ -157,7 +157,7 @@ export default async function MuralDetailPage({ params }) {
         categories={categories} 
         relatedMurals={relatedMurals} 
       />
-      <MuralFooter mural={muralData} slug={params.slug} />
+      <MuralFooter mural={muralData} />
     </>
   );
 }

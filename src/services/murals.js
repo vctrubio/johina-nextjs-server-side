@@ -7,7 +7,6 @@ export async function getMurals() {
       include: 2, // Include linked assets and entries
     });
     
-    console.log('Murals data from Contentful:', response);
     return response;
   } catch (error) {
     console.error('Error fetching murals:', error);
@@ -23,7 +22,7 @@ export async function getMuralByUrl(url) {
       include: 2,
     });
     
-    console.log('Mural by URL data from Contentful:', response);
+    
     return response.items[0] || null;
   } catch (error) {
     console.error('Error fetching mural by URL:', error);
@@ -39,7 +38,6 @@ export async function getMuralsByCategory(categoryId) {
       include: 2,
     });
     
-    console.log('Murals by category data from Contentful:', response);
     return response;
   } catch (error) {
     console.error('Error fetching murals by category:', error);
@@ -55,7 +53,6 @@ export async function getMuralCovers() {
       include: 1, // Only include direct references, not nested
     });
     
-    console.log('Mural covers data from Contentful:', response);
     return response;
   } catch (error) {
     console.error('Error fetching mural covers:', error);

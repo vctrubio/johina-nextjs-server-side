@@ -9,7 +9,7 @@ export async function getAboutPage() {
       limit: 1, // Only get the latest entry
     });
     
-    console.log('About page data from Contentful:', response);
+    
     return response;
   } catch (error) {
     console.error('Error fetching about page:', error);
