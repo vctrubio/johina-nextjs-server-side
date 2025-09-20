@@ -95,10 +95,9 @@ async function getRelatedMurals(muralData) {
   if (muralData.fields.category?.sys?.id) {
     const relatedData = await getMuralsByCategory(muralData.fields.category.sys.id);
     if (relatedData?.items) {
-      // Filter out current mural and limit to 3 recommendations
+      // Filter out current mural - show all related murals in the category
       relatedMurals = relatedData.items
-        .filter(item => item.sys.id !== muralData.sys.id)
-        .slice(0, 3);
+        .filter(item => item.sys.id !== muralData.sys.id);
     }
   }
   

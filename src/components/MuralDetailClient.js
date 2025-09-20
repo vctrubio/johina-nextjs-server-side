@@ -22,9 +22,9 @@ export default function MuralDetailClient({
     <main className="min-h-screen bg-white py-12 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Title */}
-        <div className="text-center mb-16">
+        <div className="text-center mt-6">
           <h1
-            className="font-serif text-5xl md:text-7xl font-light tracking-wide mb-4"
+            className="font-serif text-5xl md:text-7xl font-light tracking-wide"
             style={{ color: tertiaryColor }}
           >
             {mural.fields.title}
@@ -49,9 +49,9 @@ export default function MuralDetailClient({
           </div>
 
           {/* Right: Description */}
-          <div className="flex items-center">
+          <div className="flex items-center mt-2">
             {mural.fields.description && (
-              <div className="pt-8">
+              <div className="pt-8 mx-auto text-center">
                 <p className="font-light text-2xl text-gray-800 leading-relaxed tracking-wide">
                   {mural.fields.description}
                 </p>

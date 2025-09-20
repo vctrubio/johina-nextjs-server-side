@@ -18,5 +18,5 @@ export const CATEGORY_COLORS = {
   'Hotels': COLORS.primary,      // Green
   'Restaurants': COLORS.secondary, // Purple  
   'Private Residences': COLORS.tertiary, // Orange
-  'Other': COLORS.fourth         // Blue-purple
+  'Other': '#F4D03F'             // Hard yellow
 };
