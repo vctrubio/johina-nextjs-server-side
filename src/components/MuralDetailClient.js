@@ -1,143 +1,81 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
-import ShareButton from './ShareButton';
+import Image from "next/image";
+import Link from "next/link";
+import ImageCarousel from "./ImageCarousel";
+import { CATEGORY_COLORS, COLORS } from "../lib/colors";
 
-export default function MuralDetailClient({ mural, categories, relatedMurals }) {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
+export default function MuralDetailClient({
+  mural,
+  categories,
+  relatedMurals,
+}) {
   const photos = mural.fields.photos || [];
-  const currentPhoto = photos[currentImageIndex];
-  const currentImageUrl = currentPhoto?.fields?.file?.url;
-  const fullCurrentImageUrl = currentImageUrl?.startsWith('//')
-    ? `https:${currentImageUrl}`
-    : currentImageUrl;
-
-  const categoryName = categories.find(
-    cat => cat.sys.id === mural.fields.category?.sys?.id
-  )?.fields.categoryName;
+  const categoryData = categories.find(
+    (cat) => cat.sys.id === mural.fields.category?.sys?.id,
+  );
+  const categoryName = categoryData?.fields.categoryName;
+  const categoryColor = CATEGORY_COLORS[categoryName] || "#8CB150";
+  const tertiaryColor = COLORS.tertiary;
 
   return (
-    <main className="min-h-screen bg-white py-20 px-4">
-      <div className="max-w-7xl mx-auto">
-        {/* Header with Back Button and Share */}
-        <div className="flex justify-between items-center mb-8">
-          <Link
-            href="/murals"
-            className="inline-flex items-center gap-2 text-gray-600 hover:text-primary transition-colors"
+    <main className="min-h-screen bg-white py-12 px-4">
+      <div className="max-w-6xl mx-auto">
+        {/* Title */}
+        <div className="text-center mb-16">
+          <h1
+            className="font-serif text-5xl md:text-7xl font-light tracking-wide mb-4"
+            style={{ color: tertiaryColor }}
           >
-            <ArrowLeft size={20} />
-            Back to murals
-          </Link>
-          
-          <ShareButton 
-            title={`${mural.fields.title} by Johina G. Concheso`}
-            description={mural.fields.description || `Beautiful ${categoryName || 'custom'} mural by internationally renowned artist Johina G. Concheso. Featured in prestigious venues worldwide.`}
-            url={typeof window !== 'undefined' ? window.location.href : ''}
-          />
+            {mural.fields.title}
+          </h1>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Image Gallery */}
-          <div className="space-y-6">
-            {fullCurrentImageUrl && (
-              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
-                <Image
-                  src={fullCurrentImageUrl}
-                  alt={mural.fields.title || 'Mural'}
-                  fill
-                  className="object-cover"
-                  onError={(e) => {
-                    console.log('Mural image failed to load:', fullCurrentImageUrl);
-                    e.target.style.display = 'none';
-                  }}
-                />
-              </div>
-            )}
-
-            {/* Thumbnail Navigation */}
-            {photos.length > 1 && (
-              <div className="flex gap-3 overflow-x-auto pb-2">
-                {photos.map((photo, index) => {
-                  const thumbUrl = photo?.fields?.file?.url;
-                  const fullThumbUrl = thumbUrl?.startsWith('//')
-                    ? `https:${thumbUrl}`
-                    : thumbUrl;
-
-                  return (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentImageIndex(index)}
-                      className={`relative flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden ${
-                        index === currentImageIndex
-                          ? 'ring-2 ring-primary'
-                          : 'hover:ring-2 hover:ring-gray-300'
-                      }`}
-                    >
-                      {fullThumbUrl && (
-                        <Image
-                          src={fullThumbUrl}
-                          alt={`Thumbnail ${index + 1}`}
-                          fill
-                          className="object-cover"
-                        />
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          {/* Left: Image Carousel */}
+          <div className="">
+            {photos.length > 0 && (
+              <ImageCarousel
+                images={photos
+                  .map((photo) => {
+                    const url = photo?.fields?.file?.url;
+                    return url?.startsWith("//") ? `https:${url}` : url;
+                  })
+                  .filter(Boolean)}
+                title={""}
+              />
             )}
           </div>
 
-          {/* Mural Details */}
-          <div className="space-y-8">
-            <div>
-              <h1 className="font-handwritten text-4xl md:text-6xl font-bold bg-gradient-nature bg-clip-text text-transparent mb-4">
-                {mural.fields.title}
-              </h1>
-              
-              {categoryName && (
-                <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-6">
-                  {categoryName}
-                </span>
-              )}
-
-              {mural.fields.description && (
-                <p className="text-lg text-gray-700 leading-relaxed">
+          {/* Right: Description */}
+          <div className="flex items-center">
+            {mural.fields.description && (
+              <div className="pt-8">
+                <p className="font-light text-2xl text-gray-800 leading-relaxed tracking-wide">
                   {mural.fields.description}
                 </p>
-              )}
-            </div>
-
-            {/* Photo Count */}
-            <div className="flex items-center gap-4 text-gray-600">
-              <span className="text-sm">
-                {photos.length} photo{photos.length !== 1 ? 's' : ''}
-              </span>
-              {photos.length > 1 && (
-                <span className="text-sm">
-                  Photo {currentImageIndex + 1} of {photos.length}
-                </span>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </div>
 
-        {/* Related Murals */}
+        {/* Related Murals Section */}
         {relatedMurals.length > 0 && (
-          <div className="mt-20">
-            <h2 className="font-handwritten text-3xl font-bold text-gray-800 mb-8">
-              More from {categoryName}
-            </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="mt-32">
+            <div className="text-center mb-16">
+              <h2
+                className="font-serif text-2xl font-light mb-8"
+                style={{ color: tertiaryColor }}
+              >
+                More from {categoryName}
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {relatedMurals.map((related) => {
                 const coverPhoto = related.fields.photos?.[0];
                 const coverImageUrl = coverPhoto?.fields?.file?.url;
-                const fullImageUrl = coverImageUrl?.startsWith('//')
+                const fullImageUrl = coverImageUrl?.startsWith("//")
                   ? `https:${coverImageUrl}`
                   : coverImageUrl;
 
@@ -152,15 +90,15 @@ export default function MuralDetailClient({ mural, categories, relatedMurals }) 
                         <div className="relative aspect-[4/3] overflow-hidden">
                           <Image
                             src={fullImageUrl}
-                            alt={related.fields.title || 'Mural'}
+                            alt={related.fields.title || "Mural"}
                             fill
                             className="object-cover transition-all duration-500 group-hover:scale-110"
                           />
                         </div>
                       )}
-                      
+
                       <div className="p-4">
-                        <h3 className="font-handwritten text-xl font-bold text-gray-800 group-hover:text-primary transition-colors">
+                        <h3 className="font-serif text-xl font-light text-gray-800 group-hover:text-primary transition-colors">
                           {related.fields.title}
                         </h3>
                       </div>
@@ -171,6 +109,28 @@ export default function MuralDetailClient({ mural, categories, relatedMurals }) 
             </div>
           </div>
         )}
+
+        {/* See All Button */}
+        <div className="mt-16 text-center">
+          <Link
+            href="/murals"
+            className="inline-flex items-center px-10 py-4 rounded-full font-serif text-lg font-light tracking-wide transition-all duration-1000 ease-in-out border-2 bg-transparent"
+            style={{ 
+              borderColor: categoryColor,
+              color: categoryColor 
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.backgroundColor = categoryColor;
+              e.target.style.color = 'white';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.backgroundColor = 'transparent';
+              e.target.style.color = categoryColor;
+            }}
+          >
+            See All Murals
+          </Link>
+        </div>
       </div>
     </main>
   );

@@ -1,24 +1,25 @@
 import { getMuralCovers } from "../../services/murals";
 import { getCategories } from "../../services/categories";
 import MuralsClient from "../../components/MuralsClient";
+import { SITE_CONFIG, getAbsoluteUrl } from '../../lib/constants';
 
 export const metadata = {
   title: "Murals | Johina",
   description: "Explore the stunning mural portfolio of internationally renowned artist Johina G. Concheso. Browse custom murals for hotels, restaurants, private residences, UNESCO heritage sites, Royal Palaces, and prestigious embassies including Saudi Arabian & Swedish Embassies.",
   keywords: "mural gallery, custom murals, hotel murals, restaurant murals, private residence murals, UNESCO heritage site murals, Royal Palace murals, embassy murals, Saudi Arabian Embassy mural, Swedish Embassy mural, wall art portfolio, interior design murals, commercial murals, residential murals, Madrid muralist, international mural artist, Johina G. Concheso portfolio",
-  author: "Johina G. Concheso",
-  creator: "Johina G. Concheso",
+  author: SITE_CONFIG.AUTHOR,
+  creator: SITE_CONFIG.AUTHOR,
   
   // Open Graph
   openGraph: {
     title: "Murals | Johina",
     description: "Explore the stunning mural portfolio of internationally renowned artist Johina G. Concheso. Custom murals for hotels, restaurants, UNESCO heritage sites, Royal Palaces, and prestigious embassies worldwide.",
     type: "website",
-    url: "https://johina.com/murals",
-    siteName: "Johina G. Concheso - International Muralist",
+    url: getAbsoluteUrl('/murals'),
+    siteName: SITE_CONFIG.SITE_NAME,
     images: [
       {
-        url: "/johina-profile.jpg",
+        url: getAbsoluteUrl('/johina-profile.jpg'),
         width: 1200,
         height: 630,
         alt: "Johina G. Concheso Mural Portfolio - International Muralist Gallery",
@@ -31,8 +32,8 @@ export const metadata = {
     card: "summary_large_image",
     title: "Murals | Johina",
     description: "Explore stunning custom murals for hotels, restaurants, UNESCO heritage sites, Royal Palaces, and prestigious embassies by internationally renowned artist Johina G. Concheso.",
-    images: ["/johina-profile.jpg"],
-    creator: "@johinagconcheso",
+    images: [getAbsoluteUrl('/johina-profile.jpg')],
+    creator: SITE_CONFIG.TWITTER_HANDLE,
   },
   
   // Additional SEO
@@ -43,8 +44,8 @@ export const metadata = {
   other: {
     'og:image:alt': 'Johina G. Concheso Mural Portfolio - International Muralist Gallery',
     'twitter:image:alt': 'Johina G. Concheso Mural Portfolio - International Muralist Gallery',
-    'canonical': 'https://johina.com/murals',
-    'twitter:site': '@johinagconcheso',
+    'canonical': getAbsoluteUrl('/murals'),
+    'twitter:site': SITE_CONFIG.TWITTER_HANDLE,
     
     // Gallery-specific tags
     'article:section': 'Art Gallery',

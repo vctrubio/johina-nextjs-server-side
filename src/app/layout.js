@@ -1,5 +1,6 @@
 import "./globals.css";
 import Navbar from "../components/Navbar";
+import { SITE_CONFIG, getAbsoluteUrl } from '../lib/constants';
 
 export const metadata = {
   title: "Johina - Muralist & Artist",
@@ -7,8 +8,8 @@ export const metadata = {
     "Renowned international muralist Johina G. Concheso creates stunning murals for UNESCO heritage sites, Royal Palaces, and Saudi Arabian & Swedish Embassies. Featured in Architectural Digest and Elle Decor. Based in Madrid, Spain.",
   keywords:
     "muralist, international artist, UNESCO heritage sites, Royal Palaces, Saudi Arabian Embassy, Swedish Embassy, Architectural Digest, Elle Decor, Madrid artist, mural painting, wall art, custom murals, interior design, art commission",
-  author: "Johina G. Concheso",
-  creator: "Johina G. Concheso",
+  author: SITE_CONFIG.AUTHOR,
+  creator: SITE_CONFIG.AUTHOR,
   publisher: "Johina G. Concheso",
   robots: "index, follow",
   viewport: "width=device-width, initial-scale=1",
@@ -19,14 +20,14 @@ export const metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://johina.com",
-    siteName: "Johina G. Concheso - International Muralist",
+    url: SITE_CONFIG.BASE_URL,
+    siteName: SITE_CONFIG.SITE_NAME,
     title: "Johina G. Concheso - International Muralist & Artist",
     description:
       "Renowned international muralist creating stunning murals for UNESCO heritage sites, Royal Palaces, and prestigious embassies. Featured in Architectural Digest and Elle Decor.",
     images: [
       {
-        url: "/johina-profile.jpg",
+        url: getAbsoluteUrl('/johina-profile.jpg'),
         width: 1200,
         height: 630,
         alt: "Johina G. Concheso - International Muralist and Artist",
@@ -40,8 +41,8 @@ export const metadata = {
     title: "Johina G. Concheso - International Muralist & Artist",
     description:
       "Renowned international muralist creating stunning murals for UNESCO heritage sites, Royal Palaces, and prestigious embassies.",
-    images: ["/johina-profile.jpg"],
-    creator: "@johinagconcheso",
+    images: [getAbsoluteUrl('/johina-profile.jpg')],
+    creator: SITE_CONFIG.TWITTER_HANDLE,
   },
 
   // Additional SEO
