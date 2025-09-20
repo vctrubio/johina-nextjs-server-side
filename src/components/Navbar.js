@@ -42,17 +42,17 @@ export default function Navbar() {
             </div>
           </div>
 
-          <div className="flex items-center space-x-10">
+          <div className="flex items-center space-x-2 sm:space-x-6 md:space-x-10">
             <Link
               href="/murals"
-              className="text-gray-700 hover:opacity-80 px-4 py-3 text-lg font-semibold tracking-wide transition-all duration-200 hover:scale-105"
+              className="text-gray-700 hover:opacity-80 px-2 sm:px-3 md:px-4 py-3 text-base sm:text-lg font-semibold tracking-wide transition-all duration-200 hover:scale-105"
               style={getNavLinkStyle("/murals")}
             >
               Murals
             </Link>
             <Link
               href="/about"
-              className="text-gray-700 hover:opacity-80 px-4 py-3 text-lg font-semibold tracking-wide transition-all duration-200 hover:scale-105"
+              className="text-gray-700 hover:opacity-80 px-2 sm:px-3 md:px-4 py-3 text-base sm:text-lg font-semibold tracking-wide transition-all duration-200 hover:scale-105"
               style={getNavLinkStyle("/about")}
             >
               About

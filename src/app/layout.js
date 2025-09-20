@@ -17,6 +17,18 @@ export const metadata = {
   charset: "UTF-8",
   language: "en",
 
+  // Icons
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '32x32', type: 'image/x-icon' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
+
   // Open Graph / Facebook
   openGraph: {
     type: "website",
@@ -28,10 +40,11 @@ export const metadata = {
       "Renowned international muralist creating stunning murals for UNESCO heritage sites, Royal Palaces, and prestigious embassies. Featured in Architectural Digest and Elle Decor.",
     images: [
       {
-        url: getAbsoluteUrl("/johina-profile.jpg"),
-        width: 1342,
-        height: 1184,
+        url: getAbsoluteUrl("/meta-johina.jpg"),
+        width: 1200,
+        height: 1059,
         alt: "Johina G. Concheso - International Muralist and Artist",
+        type: "image/jpeg",
       },
     ],
   },
@@ -42,7 +55,7 @@ export const metadata = {
     title: "Johina G. Concheso - International Muralist & Artist",
     description:
       "Renowned international muralist creating stunning murals for UNESCO heritage sites, Royal Palaces, and prestigious embassies.",
-    images: [getAbsoluteUrl("/johina-profile.jpg")],
+    images: [getAbsoluteUrl("/meta-johina.jpg")],
     creator: SITE_CONFIG.TWITTER_HANDLE,
   },
 

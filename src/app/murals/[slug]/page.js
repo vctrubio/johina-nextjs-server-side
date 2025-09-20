@@ -10,7 +10,7 @@ function generateMuralMetadata(muralData, params) {
   const mural = muralData.fields;
   const photos = mural.photos || [];
   const firstPhoto = photos[0]?.fields?.file?.url;
-  const imageUrl = firstPhoto ? (firstPhoto.startsWith('//') ? `https:${firstPhoto}` : firstPhoto) : '/johina-profile.jpg';
+  const imageUrl = firstPhoto ? (firstPhoto.startsWith('//') ? `https:${firstPhoto}` : firstPhoto) : '/meta-johina.jpg';
 
   const title = mural.title;
   const description = mural.description || `Stunning mural by internationally renowned artist Johina G. Concheso. Featured in prestigious venues worldwide.`;
