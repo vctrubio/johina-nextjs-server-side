@@ -20,11 +20,11 @@ export default function MuralCard({ mural, categoryName }) {
   return (
     <Link
       href={`/murals/${mural.fields.url}`}
-      className="group block w-80 sm:w-96 lg:w-[28rem]"
+      className="group block w-full"
     >
       <div className="relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1 h-96 sm:h-[28rem] lg:h-[32rem]">
         {/* Cover Image */}
-        <div className="relative h-72 sm:h-80 lg:h-96 overflow-hidden">
+        <div className="relative h-80 sm:h-96 lg:h-[26rem] overflow-hidden">
           <Image
             src={
               fullImageUrl && !imageError ? fullImageUrl : "/img-not-found.jpg"
@@ -40,7 +40,7 @@ export default function MuralCard({ mural, categoryName }) {
         </div>
 
         {/* Title with marker effect on hover */}
-        <div className="p-4 sm:p-6 h-24 sm:h-32 lg:h-36 flex items-center justify-center">
+        <div className="p-2 sm:p-4 h-20 sm:h-24 lg:h-28 flex items-center justify-center">
           <h3 className="relative font-medium text-lg sm:text-xl lg:text-2xl text-gray-800 group-hover:text-gray-900 transition-colors duration-300 text-center">
             <span
               className="marker-title relative inline-block px-3 rounded-full transition-all duration-500 group-hover:transform group-hover:-rotate-1"
